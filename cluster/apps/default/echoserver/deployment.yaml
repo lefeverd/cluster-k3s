@@ -45,10 +45,10 @@ metadata:
   labels:
     app: echoserver
   annotations:
-      kubernetes.io/ingress.class: "traefik"
       cert-manager.io/cluster-issuer: "letsencrypt-production"
       traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
 spec:
+  ingressClassName: traefik
   rules:
     - host: echoserver.${SECRET_DOMAIN}
       http:

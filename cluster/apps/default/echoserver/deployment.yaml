@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: echoserver-svc
+  namespace: default
 spec:
   ports:
   - port: 80
@@ -17,6 +18,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: echoserver
+  namespace: default
 spec:
   replicas: 2
   selector:
@@ -39,6 +41,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: echoserver
+  namespace: default
   labels:
     app: echoserver
   annotations:

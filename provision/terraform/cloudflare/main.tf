@@ -16,6 +16,11 @@ terraform {
   }
 }
 
+variable "cluster_ip" {
+  type = string
+  default = "88.198.145.218"
+}
+
 data "sops_file" "cloudflare_secrets" {
   source_file = "secret.sops.yaml"
 }
@@ -81,7 +86,7 @@ resource "cloudflare_zone_settings_override" "cloudflare_settings" {
 resource "cloudflare_record" "ipv4" {
   name    = "ipv4"
   zone_id = lookup(data.cloudflare_zones.domain.zones[0], "id")
-  value   = "78.47.21.147" # Floating IP
+  value   = "${var.cluster_ip}"
   proxied = true
   type    = "A"
   ttl     = 1

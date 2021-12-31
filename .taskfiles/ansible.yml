@@ -22,6 +22,12 @@ tasks:
     cmds:
       - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --list-hosts"
 
+  playbook:ubuntu-init:
+    desc: Initialize all the k8s nodes, connecting as root and adding the first user
+    dir: provision/ansible
+    cmds:
+      - "ansible-playbook -e ansible_user=root -e ansible_remote_tmp=/tmp/.ansible-init/tmp/ -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/ubuntu-init.yml"
+
   playbook:ubuntu-prepare:
     desc: Prepare all the k8s nodes for running k3s
     dir: provision/ansible

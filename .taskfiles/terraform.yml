@@ -3,20 +3,38 @@ version: "3"
 
 tasks:
 
-  init:cloudflare:
+  cloudflare:init:
     desc: Initialize terraform
     dir: provision/terraform/cloudflare
     cmds:
       - "terraform init"
 
-  plan:cloudflare:
+  cloudflare:plan:
     desc: Prepare all the k8s nodes for running k3s
     dir: provision/terraform/cloudflare
     cmds:
       - "terraform plan"
 
-  apply:cloudflare:
+  cloudflare:apply:
     desc: Prepare all the k8s nodes for running k3s
     dir: provision/terraform/cloudflare
+    cmds:
+      - "terraform apply"
+
+  hetzner:init:
+    desc: Initialize terraform
+    dir: provision/terraform/hetzner
+    cmds:
+      - "terraform init"
+
+  hetzner:plan:
+    desc: Prepare all the k8s nodes for running k3s
+    dir: provision/terraform/hetzner
+    cmds:
+      - "terraform plan"
+
+  hetzner:apply:
+    desc: Prepare all the k8s nodes for running k3s
+    dir: provision/terraform/hetzner
     cmds:
       - "terraform apply"

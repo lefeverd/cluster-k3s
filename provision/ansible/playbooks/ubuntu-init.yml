@@ -1,0 +1,28 @@
+---
+- hosts:
+    - master
+    - worker
+  become: false
+  gather_facts: true
+  any_errors_fatal: true
+  pre_tasks:
+    - name: Pausing for 5 seconds...
+      pause:
+        seconds: 5
+  tasks:
+    - name: Add user
+      ansible.builtin.user:
+        name: "{{ user }}"
+        group: sudo
+
+    - name: Add user to sudoers
+      ansible.builtin.copy:
+        content: "{{ user }} ALL=(ALL:ALL) NOPASSWD:ALL"
+        dest: "/etc/sudoers.d/{{ user }}_nopasswd"
+        mode: "0440"
+
+    - name: Add additional user SSH public keys
+      ansible.posix.authorized_key:
+        user: "{{ user }}"
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+      when: not ansible_check_mode

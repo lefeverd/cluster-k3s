@@ -8,7 +8,7 @@
   pre_tasks:
     - name: Pausing for 5 seconds...
       pause:
-        seconds: 5
+        seconds: 1
   tasks:
     - name: Check if cluster is installed
       ansible.builtin.stat:

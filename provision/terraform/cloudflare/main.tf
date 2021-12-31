@@ -78,14 +78,10 @@ resource "cloudflare_zone_settings_override" "cloudflare_settings" {
   }
 }
 
-data "http" "ipv4" {
-  url = "http://ipv4.icanhazip.com"
-}
-
 resource "cloudflare_record" "ipv4" {
   name    = "ipv4"
   zone_id = lookup(data.cloudflare_zones.domain.zones[0], "id")
-  value   = chomp(data.http.ipv4.body)
+  value   = "78.47.21.147" # Floating IP
   proxied = true
   type    = "A"
   ttl     = 1

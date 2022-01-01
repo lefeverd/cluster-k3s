@@ -33,8 +33,14 @@ tasks:
     cmds:
       - "terraform plan"
 
+  hetzner:show:
+    desc: Show the current state
+    dir: provision/terraform/hetzner
+    cmds:
+      - "terraform show"
+
   hetzner:apply:
-    desc: Prepare all the k8s nodes for running k3s
+    desc: Apply the plan to prepare all the k8s nodes for running k3s
     dir: provision/terraform/hetzner
     cmds:
       - "terraform apply"

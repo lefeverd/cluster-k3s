@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: tls-argocd
+  namespace: argocd
+spec:
+  commonName: argocd.${SECRET_DOMAIN}
+  secretName: tls-argocd
+  dnsNames:
+    - argocd.${SECRET_DOMAIN}
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer

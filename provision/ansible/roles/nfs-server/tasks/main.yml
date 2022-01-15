@@ -1,0 +1,9 @@
+---
+
+- name: Ensure volumes exist
+  ansible.posix.mount:
+    path: item.strip().split()[1]
+    src: item.strip().split()[0]
+    fstype: ext4
+    state: present
+  with_items: "{{ mount_volumes }}"

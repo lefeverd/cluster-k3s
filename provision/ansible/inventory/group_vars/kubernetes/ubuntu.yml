@@ -4,3 +4,4 @@
 
 # (list) Additional ssh public keys to add to the nodes
 # ssh_authorized_keys:
+user: dvd

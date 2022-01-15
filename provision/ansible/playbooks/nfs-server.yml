@@ -1,7 +1,5 @@
 ---
 - hosts:
-    - master
-    - worker
     - nfs
   become: true
   gather_facts: true
@@ -11,4 +9,5 @@
       pause:
         seconds: 5
   roles:
-    - ubuntu
+    - role: nfs-server
+    - role: geerlingguy.nfs

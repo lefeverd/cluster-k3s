@@ -2,6 +2,7 @@
 - hosts:
     - master
     - worker
+    - nfs
   become: false
   gather_facts: true
   any_errors_fatal: true

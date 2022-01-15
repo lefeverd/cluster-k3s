@@ -1,0 +1,118 @@
+apiVersion: v1
+data:
+  fio.sh: |
+    #!/bin/bash
+
+    apt-get update
+    apt-get install -qq fio ioping
+
+    rm -rf /mnt/pv/*
+
+    echo ""
+    echo "====== Starting randwrite 4k (latency) ======"
+    fio --filename=/mnt/pv/fio.test \
+      --name=random-write \
+      --ioengine=libaio \
+      --rw=randwrite \
+      --bs=4k \
+      --numjobs=1 \
+      --size=4g \
+      --iodepth=1 \
+      --runtime=60
+
+    rm -rf /mnt/pv/*
+
+    echo ""
+    echo "====== Randrw 4k 75% reads (IOPS) ======"
+    fio --filename=/mnt/pv/fio.test \
+      --size=4GB \
+      --direct=1 \
+      --rw=randrw \
+      --bs=4k \
+      --ioengine=libaio \
+      --iodepth=64 \
+      --runtime=120 \
+      --rwmixread=75 \
+      --time_based \
+      --group_reporting \
+      --name=iops-test-job
+    
+    rm -rf /mnt/pv/*
+    echo ""
+    echo "====== Randrw 64k 75% reads (throughput) ======"
+    fio --filename=/mnt/pv/fio.test \
+      --size=4GB \
+      --direct=1 \
+      --rw=randrw \
+      --bs=64k \
+      --ioengine=libaio \
+      --iodepth=64 \
+      --runtime=120 \
+      --rwmixread=75 \
+      --time_based \
+      --group_reporting \
+      --name=throughput-test-job 
+
+    echo ""
+    echo "====== Randr 4k (IOPS) ======"
+    fio --filename=/mnt/pv/fio.test \
+      --direct=1 \
+      --rw=randread \
+      --bs=4k \
+      --ioengine=libaio \
+      --iodepth=64 \
+      --runtime=120 \
+      --time_based \
+      --group_reporting \
+      --name=iops-test-job \
+      --readonly
+    
+    echo ""
+    echo "====== Randr 64k (throughput) ======"
+    fio --filename=/mnt/pv/fio.test \
+      --direct=1 \
+      --rw=randread \
+      --bs=64k \
+      --ioengine=libaio\
+      --iodepth=64 \
+      --runtime=120 \
+      --time_based \
+      --group_reporting \
+      --name=throughput-test-job \
+      --readonly
+
+    echo ""
+    echo "====== Randr 4k iodepth 1 (latency) ======"
+    fio --filename=/mnt/pv/fio.test \
+      --direct=1 \
+      --rw=randread \
+      --bs=4k \
+      --ioengine=libaio \
+      --iodepth=1 \
+      --numjobs=1 \
+      --time_based \
+      --group_reporting \
+      --name=readlatency-test-job \
+      --runtime=120 \
+      --readonly
+    
+    #echo ""
+    #echo "====== Starting randwrite 64k with 16 jobs (normal workload) ======"
+    #fio --name=random-write \
+    #  --ioengine=libaio \
+    #  --rw=randwrite \
+    #  --bs=64k \
+    #  --size=256m \
+    #  --numjobs=16 \
+    #  --iodepth=16 \
+    #  --runtime=60
+
+    echo "Removing data"
+    rm -rf /mnt/pv/*
+    echo "Done"
+    echo ""
+    echo "====== Executing IOPing ======"
+    ioping -c 10 /mnt/pv/
+kind: ConfigMap
+metadata:
+  name: io-test-config

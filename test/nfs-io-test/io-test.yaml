@@ -1,0 +1,31 @@
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: io-test
+spec:
+  template:
+    metadata:
+      name: io-test
+      labels:
+        app: io-test
+    spec:
+      containers:
+      - name: io-test
+        image: debian
+        command: ["/scripts/fio.sh"]
+        #command: ["dd","if=/dev/zero","of=/mnt/pv/test.img","bs=1G","count=1","oflag=dsync"]
+        volumeMounts:
+        - mountPath: "/mnt/pv"
+          name: io-test-volume
+        - name: io-test-config
+          mountPath: /scripts
+      volumes:
+      - name: io-test-volume
+        persistentVolumeClaim:
+          claimName: io-test-claim
+      - name: io-test-config
+        configMap:
+          name: io-test-config
+          defaultMode: 0744
+      restartPolicy: Never

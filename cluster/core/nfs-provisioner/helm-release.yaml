@@ -9,8 +9,8 @@ spec:
   chart:
     git: https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner
     ref: master
+    path: charts/nfs-subdir-external-provisioner
   values:
-    configInline:
-      nfs:
-        server: 10.0.0.100
-        path: /srv/nfs
+    nfs:
+      server: 10.0.0.100
+      path: /srv/nfs

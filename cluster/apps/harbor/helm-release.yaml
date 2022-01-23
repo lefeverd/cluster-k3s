@@ -35,19 +35,15 @@ spec:
           storageClass: "nfs-client"
           size: 5Gi
         jobservice:
-          existingClaim: ""
           storageClass: "nfs-client"
           size: 1Gi
         database:
-          existingClaim: ""
           storageClass: "nfs-client"
           size: 1Gi
         redis:
-          existingClaim: ""
           storageClass: "nfs-client"
           size: 1Gi
         trivy:
-          existingClaim: ""
           storageClass: "nfs-client"
           size: 5Gi
     harborAdminPassword: "admin"

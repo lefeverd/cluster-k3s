@@ -6,3 +6,4 @@ resources:
   - networking.yaml
   - nfs-provisioner.yaml
   - argocd.yaml
+  - harbor.yaml

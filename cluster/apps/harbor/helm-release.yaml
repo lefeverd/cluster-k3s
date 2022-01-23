@@ -8,8 +8,12 @@ metadata:
 spec:
   interval: 5m
   chart:
-    git: https://github.com/goharbor/harbor-helm
-    ref: master
+    spec:
+      chart: ./
+      sourceRef:
+        kind: GitRepository
+        name: harbor-chart
+        namespace: flux-system
   values:
     expose:
       tls:

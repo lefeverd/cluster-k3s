@@ -31,7 +31,25 @@ spec:
     externalURL: https://harbor.${SECRET_DOMAIN}
     persistence:
       persistentVolumeClaim:
-        storageClass: nfs-client
+        registry:
+          storageClass: "nfs-client"
+          size: 5Gi
+        jobservice:
+          existingClaim: ""
+          storageClass: "nfs-client"
+          size: 1Gi
+        database:
+          existingClaim: ""
+          storageClass: "nfs-client"
+          size: 1Gi
+        redis:
+          existingClaim: ""
+          storageClass: "nfs-client"
+          size: 1Gi
+        trivy:
+          existingClaim: ""
+          storageClass: "nfs-client"
+          size: 5Gi
     harborAdminPassword: "admin"
     secretKey: ${SECRET_HARBOR_SECRET_KEY}
     chartmuseum:

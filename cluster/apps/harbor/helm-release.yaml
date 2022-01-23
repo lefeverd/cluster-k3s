@@ -17,8 +17,13 @@ spec:
   values:
     expose:
       tls:
-        secretName: "tls-harbor-${SECRET_DOMAIN}"
-        notarySecretName: "tls-harbor-${SECRET_DOMAIN}"
+        enabled: true
+        # cert-manager will automatically create them,
+        # based on the ingress annotations.
+        certSource: secret
+        secret:
+          secretName: "tls-harbor-${SECRET_DOMAIN}"
+          notarySecretName: "tls-harbor-${SECRET_DOMAIN}"
       ingress:
         hosts:
           core: harbor.${SECRET_DOMAIN}

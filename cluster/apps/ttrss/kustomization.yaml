@@ -6,4 +6,4 @@ resources:
   - mercury-deployment.yaml
   - ttrss-deployment.yaml
   - ingress.yaml
-namespace: harbor
+namespace: ttrss

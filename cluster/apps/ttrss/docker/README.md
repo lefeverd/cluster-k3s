@@ -8,6 +8,18 @@ helm repo update
 helm install postgres-ttrss --namespace ttrss -f ./charts-values/postgres-ttrss.yaml bitnami/postgresql
 ```
 
+### Backup
+
+```
+kubectl exec postgres-ttrss-postgresql-0 -- pg_dumpall -c -U postgres > /tmp/dump_$(date +"%Y-%m-%d_%H_%M_%S").sql
+```
+
+### Restore
+
+```
+cat /tmp/dump_xxx.gz | gzip -d | kubectl exec -i postgres-postgresql-0 -- "psql -U postgres"
+```
+
 ## Mercury
 
 Mercury is a service that gets fulltext from articles.  

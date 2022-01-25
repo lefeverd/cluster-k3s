@@ -48,7 +48,7 @@ spec:
           - name: DB_TYPE
             value: "pgsql"
           - name: DB_HOST
-            value: "postgres-ttrss-postgresql"
+            value: "postgres-postgresql"
           - name: DB_PORT
             value: "5432"
           - name: DB_NAME

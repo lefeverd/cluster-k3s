@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - postgres-helm-release.yaml
+  - docker-secret.yaml
+  - mercury-deployment.yaml
+  - ttrss-deployment.yaml
+  - ingress.yaml
+namespace: harbor

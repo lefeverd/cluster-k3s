@@ -8,3 +8,4 @@ resources:
   - argocd.yaml
   - harbor.yaml
   - ttrss.yaml
+  - monitoring.yaml

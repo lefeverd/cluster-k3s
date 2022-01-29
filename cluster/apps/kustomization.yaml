@@ -5,6 +5,7 @@ resources:
   - kube-system
   - networking
   - system-upgrade
+  - monitoring
   - argocd
   - harbor
   - ttrss

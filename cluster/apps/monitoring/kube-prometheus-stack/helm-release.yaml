@@ -19,13 +19,6 @@ spec:
     alertmanager:
       ingress:
         enabled: false
-        annotations: {}
-        labels: {}
-        hosts: []
-        paths: []
-        tls: []
-      secret:
-        annotations: {}
     grafana:
       enabled: true
       adminPassword: ${SECRET_GRAFANA_ADMIN_PASSWORD}
@@ -35,7 +28,6 @@ spec:
           ingress.kubernetes.io/ssl-redirect: "true"
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        labels: {}
         hosts:
           - grafana.${SECRET_DOMAIN}
         path: /
@@ -80,7 +72,7 @@ spec:
           - secretName: prometheus-.${SECRET_DOMAIN}
             hosts:
               - prometheus.${SECRET_DOMAIN}
-      storageSpec: {}
+      storageSpec:
         volumeClaimTemplate:
           spec:
             storageClassName: nfs-client

@@ -1,23 +1,21 @@
 # TTRSS
 
-## PostgreSQL
+### Backup and restore
 
-```bash
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm repo update
-helm install postgres-ttrss --namespace ttrss -f ./charts-values/postgres-ttrss.yaml bitnami/postgresql
-```
+Migration was done using kubectl port-forward and pgadmin for ease of use.
 
-### Backup
+We can also use the following commands :
+
+To backup :
 
 ```
 kubectl exec postgres-ttrss-postgresql-0 -- pg_dumpall -c -U postgres > /tmp/dump_$(date +"%Y-%m-%d_%H_%M_%S").sql
 ```
 
-### Restore
+To restore :
 
 ```
-cat /tmp/dump_xxx.gz | gzip -d | kubectl exec -i postgres-postgresql-0 -- "psql -U postgres"
+cat /tmp/dump_xxx.gz | gzip -d | kubectl exec -i postgres-postgresql-0 -- psql -U postgres
 ```
 
 ## Mercury

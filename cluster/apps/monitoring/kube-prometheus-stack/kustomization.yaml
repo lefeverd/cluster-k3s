@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - monitoring-secrets.sops.yaml
   - helm-release.yaml
+namespace: monitoring

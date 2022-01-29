@@ -146,6 +146,15 @@ resource "cloudflare_record" "rss" {
   ttl     = 1
 }
 
+resource "cloudflare_record" "grafana" {
+  name    = "grafana"
+  zone_id = lookup(data.cloudflare_zones.domain.zones[0], "id")
+  value   = "ipv4.${data.sops_file.cloudflare_secrets.data["cloudflare_domain"]}"
+  proxied = true
+  type    = "CNAME"
+  ttl     = 1
+}
+
 resource "cloudflare_record" "simplebookmarks" {
   name    = "simplebookmarks"
   zone_id = lookup(data.cloudflare_zones.domain.zones[0], "id")

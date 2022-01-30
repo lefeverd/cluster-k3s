@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - grafana-admin-secret.sops.yaml
+  - alertmanager-secrets.sops.yaml

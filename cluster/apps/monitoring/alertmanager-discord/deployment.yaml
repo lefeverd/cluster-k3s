@@ -16,9 +16,9 @@ spec:
         app.kubernetes.io/name: alertmanager-discord
     spec:
       containers:
+      - name: alertmanager-discord
         image: harbor.dhosting.xyz/horsducommun/alertmanager-discord
         imagePullPolicy: Always
-        name: alertmanager-discord
         ports:
         - containerPort: 9094
         securityContext:

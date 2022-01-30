@@ -117,6 +117,10 @@ spec:
       enabled: true
     prometheus:
       enabled: true
+      prometheusSpec:
+        # To scrape all pod monitors
+        # see https://github.com/prometheus-operator/kube-prometheus/issues/181
+        podMonitorSelectorNilUsesHelmValues: false
       ingress:
         enabled: true
         annotations:

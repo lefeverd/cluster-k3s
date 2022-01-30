@@ -25,6 +25,19 @@ spec:
         existingSecret: "grafana-admin-secret"
         userKey: admin-user
         passwordKey: admin-password
+      persistence:
+        type: pvc
+        enabled: true
+        storageClassName: nfs-client
+        accessModes:
+          - ReadWriteOnce
+        size: 5Gi
+        # annotations: {}
+        #finalizers:
+        #  - kubernetes.io/pvc-protection
+        # selectorLabels: {}
+        # subPath: ""
+        # existingClaim:
       ingress:
         enabled: true
         annotations:

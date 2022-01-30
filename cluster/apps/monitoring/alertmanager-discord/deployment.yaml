@@ -23,8 +23,6 @@ spec:
         - containerPort: 9094
         securityContext:
           allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          runAsNonRoot: true
         env:
           - name: DISCORD_WEBHOOK
             value: ${SECRET_ALERT_MANAGER_DISCORD_WEBHOOK}

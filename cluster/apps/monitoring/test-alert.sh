@@ -12,7 +12,8 @@ curl -si -X POST -H "Content-Type: application/json" "$URL" -d '
       "severity": "critical"
     },
     "annotations": {
-      "summary": "Instance is down"
+      "summary": "Instance is down",
+      "description": "Test alert to notify instance down"
     },
     "generatorURL": "http://localhost:9090/graph"
   }

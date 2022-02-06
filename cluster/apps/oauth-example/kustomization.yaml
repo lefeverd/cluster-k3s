@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
   - traefik-forwarder-auth-secret.yaml
   - certificate.yaml
-  - forwarder-auth.yaml
+  - forward-auth.yaml
   - deployment.yaml
 namespace: echoserver-secure

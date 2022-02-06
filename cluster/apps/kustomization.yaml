@@ -9,4 +9,5 @@ resources:
   - argocd
   - harbor
   - ttrss
-  - oauth-example
+  # - oidc-traefik-example
+  - oidc-oauth2-proxy-example

@@ -1,0 +1,19 @@
+---
+## Route going to oauth2-proxy service
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: echoserver-secure-test
+  namespace: oauth-proxy
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`echoserver-secure.${SECRET_DOMAIN}`)
+      priority: 10
+      services:
+        - name: oauth2-proxy
+          port: 80
+  tls:
+    secretName: tls-echoserver-secure

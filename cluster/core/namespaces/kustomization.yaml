@@ -9,3 +9,4 @@ resources:
   - harbor.yaml
   - ttrss.yaml
   - monitoring.yaml
+  - echoserver-secure.yaml

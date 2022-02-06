@@ -9,3 +9,4 @@ resources:
   - argocd
   - harbor
   - ttrss
+  - oauth-example

@@ -1,0 +1,103 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: traefik-forward-auth
+  namespace: echoserver-secure
+spec:
+  forwardAuth:
+    address: http://traefik-forward-auth.echoserver-secure.svc
+    trustForwardHeader: true
+    authResponseHeaders:
+      - X-Forwarded-User
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik-forward-auth
+  namespace: echoserver-secure
+spec:
+  selector:
+    app: traefik-forward-auth
+  ports:
+    - name: http
+      port: 80
+      targetPort: 4181
+      protocol: TCP
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: traefik-forward-auth-cm
+  namespace: echoserver-secure
+data:
+  INSECURE_COOKIE: 'false'
+  COOKIE_DOMAIN: echoserver-secure.${SECRET_DOMAIN}
+  DOMAINS: echoserver-secure.${SECRET_DOMAIN}
+  AUTH_HOST: echoserver-secure.${SECRET_DOMAIN}
+  URL_PATH: /_oauth
+  DEFAULT_PROVIDER: oidc
+  PROVIDERS_OIDC_ISSUER_URL: https://echoserver-secure.${SECRET_OAUTH_PROVIDER}/
+  PROVIDERS_OIDC_CLIENT_ID: ${SECRET_OAUTH_CLIENT_ID_SECURE_ECHOSERVER}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: echoserver-secure
+  name: traefik-forward-auth
+  labels:
+    app: traefik-forward-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefik-forward-auth
+  template:
+    metadata:
+      labels:
+        app: traefik-forward-auth
+      annotations:
+        container.apparmor.security.beta.kubernetes.io/traefik-forward-auth: runtime/default
+    spec:
+      containers:
+        - name: traefik-forward-auth
+          image: thomseddon/traefik-forward-auth
+          imagePullPolicy: Always
+          securityContext:
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65534
+            runAsGroup: 65534
+            capabilities:
+              drop:
+                - ALL
+          livenessProbe:
+            failureThreshold: 3
+            tcpSocket:
+              port: 4181
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            limits:
+              memory: '10Mi'
+              cpu: '100m'
+          ports:
+            - name: http
+              containerPort: 4181
+          envFrom:
+          - configMapRef:
+              name: traefik-forward-auth-cm
+          env:
+            - name: PROVIDERS_OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: traefik-forwarder-auth-secret
+                  key: PROVIDERS_OIDC_CLIENT_SECRET
+            - name: SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: traefik-forwarder-auth-secret
+                  key: SECRET

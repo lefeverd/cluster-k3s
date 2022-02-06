@@ -118,7 +118,7 @@ spec:
     prometheus:
       enabled: true
       prometheusSpec:
-        # To scrape all pod monitors
+        # To scrape all pod monitors (incuding the one we created in flux-system)
         # see https://github.com/prometheus-operator/kube-prometheus/issues/181
         podMonitorSelectorNilUsesHelmValues: false
       ingress:

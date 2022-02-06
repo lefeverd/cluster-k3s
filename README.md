@@ -13,6 +13,7 @@ Added :
 - argocd
 - ttrss
 - monitoring (kube-prometheus-stack)
+- oauth-example
 
 ## Useful commands
 

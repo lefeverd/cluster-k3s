@@ -10,3 +10,4 @@ resources:
   - ttrss.yaml
   - monitoring.yaml
   - echoserver-secure.yaml
+  - oauth-proxy.yaml

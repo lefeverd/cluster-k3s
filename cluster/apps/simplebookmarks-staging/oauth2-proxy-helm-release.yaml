@@ -47,7 +47,7 @@ spec:
         skip_provider_button="true"
         email_domains="*"
         whitelist_domains=[
-          "https://staging.${SECRET_SIMPLEBOOKMARKS_DOMAIN}"
+          "staging.${SECRET_SIMPLEBOOKMARKS_DOMAIN}"
         ]
         # set the ID Token in the headers of the responses
         # useful to retrieve it from the frontend

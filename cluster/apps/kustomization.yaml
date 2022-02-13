@@ -11,3 +11,4 @@ resources:
   - ttrss
   # - oidc-traefik-example
   - oidc-oauth2-proxy-example
+  - simplebookmarks-staging

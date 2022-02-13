@@ -3,7 +3,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: staging-api-test
+  name: staging-api
   namespace: simplebookmarks-staging
 spec:
   entryPoints:

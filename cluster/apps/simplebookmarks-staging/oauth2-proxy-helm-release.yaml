@@ -39,6 +39,9 @@ spec:
         oidc_issuer_url="${SECRET_SIMPLEBOOKMARKS_OAUTH_ISSUER_URL}"
         oidc_jwks_url="${SECRET_SIMPLEBOOKMARKS_OAUTH_ISSUER_URL}.well-known/openid-configuration"
         profile_url="${SECRET_SIMPLEBOOKMARKS_OAUTH_ISSUER_URL}userinfo"
+        cookie_domains=[
+          ".staging.${SECRET_SIMPLEBOOKMARKS_DOMAIN}"
+        ]
         upstreams = [
           "http://simplebookmarks-staging-api.simplebookmarks-staging.svc"
         ]

@@ -52,7 +52,6 @@ spec:
         # set the ID Token in the headers of the responses
         # useful to retrieve it from the frontend
         set_authorization_header="true"
-        email_domains = [ "*" ]
 
     metrics:
       # Enable Prometheus metrics endpoint

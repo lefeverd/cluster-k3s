@@ -23,6 +23,15 @@ To test the kustomization :
 kustomize build cluster/apps/
 ```
 
+Helm releases might not be updated, to force an update :
+
+```
+flux -n simplebookmarks-staging suspend hr oauth2-proxy
+
+# Then :
+flux -n simplebookmarks-staging resume hr oauth2-proxy
+```
+
 ## Overview
 
 - [Introduction](https://github.com/k8s-at-home/template-cluster-k3s#wave-introduction)

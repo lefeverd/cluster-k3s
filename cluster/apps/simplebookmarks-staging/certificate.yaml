@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: tls-staging-api
-  namespace: oauth-proxy
+  namespace: simplebookmarks-staging
 spec:
   commonName: staging-api.${SECRET_SIMPLEBOOKMARKS_DOMAIN}
   secretName: tls-staging-api

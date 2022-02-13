@@ -21,6 +21,12 @@ tasks:
     cmds:
       - "terraform apply"
 
+  cloudflare:show:
+    desc: Show the current state
+    dir: provision/terraform/cloudflare
+    cmds:
+      - "terraform show"
+
   hetzner:init:
     desc: Initialize terraform
     dir: provision/terraform/hetzner

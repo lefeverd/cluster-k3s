@@ -43,6 +43,7 @@ spec:
         ]
         pass_access_token = true
         pass_authorization_header = true
+        set_authorization_header = true
         skip_provider_button = true
         email_domains = [ "*" ]
 

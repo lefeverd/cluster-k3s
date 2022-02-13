@@ -4,10 +4,10 @@ metadata:
   name: tls-staging-api
   namespace: simplebookmarks-staging
 spec:
-  commonName: staging-api.${SECRET_SIMPLEBOOKMARKS_DOMAIN}
+  commonName: api.staging.${SECRET_SIMPLEBOOKMARKS_DOMAIN}
   secretName: tls-staging-api
   dnsNames:
-    - staging-api.${SECRET_SIMPLEBOOKMARKS_DOMAIN}
+    - api.staging.${SECRET_SIMPLEBOOKMARKS_DOMAIN}
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer

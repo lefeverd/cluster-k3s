@@ -23,6 +23,14 @@ To test the kustomization :
 kustomize build cluster/apps/
 ```
 
+To force a reconciliation (recreate objects, ...) :
+
+```
+flux reconcile ks apps
+```
+
+(or base, core).
+
 Helm releases might not be updated, to force an update :
 
 ```

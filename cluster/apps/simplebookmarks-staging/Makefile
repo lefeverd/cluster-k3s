@@ -8,4 +8,4 @@ SECRET_DOCKER_PASSWORD = $(shell sops -d --extract '["stringData"]["SECRET_SIMPL
 SECRET_DOCKER_EMAIL = $(shell sops -d --extract '["stringData"]["SECRET_SIMPLEBOOKMARKS_DOCKER_EMAIL"]' ../../base/cluster-secrets.sops.yaml)
 
 generate-registry-secret:
-	kubectl create secret docker-registry docker-registry-harbor --docker-server=harbor.$(SECRET_DOMAIN)/horsducommun --docker-username=$(SECRET_DOCKER_USERNAME) --docker-password=$(SECRET_DOCKER_PASSWORD) --docker-email=$(SECRET_DOCKER_EMAIL) --dry-run=client -o yaml > ./docker-secret.yaml
+	kubectl create secret docker-registry docker-registry-harbor --docker-server=harbor.$(SECRET_DOMAIN)/simplebookmarks --docker-username=$(SECRET_DOCKER_USERNAME) --docker-password=$(SECRET_DOCKER_PASSWORD) --docker-email=$(SECRET_DOCKER_EMAIL) --dry-run=client -o yaml > ./docker-secret.yaml

@@ -10,7 +10,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`staging-api.${SECRET_SIMPLEBOOKMARKS_DOMAIN}`)
+      match: Host(`api.staging.${SECRET_SIMPLEBOOKMARKS_DOMAIN}`)
       priority: 10
       services:
         - name: oauth2-proxy

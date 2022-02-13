@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-staging-api
+  namespace: oauth-proxy
+spec:
+  commonName: staging-api.${SECRET_SIMPLEBOOKMARKS_DOMAIN}
+  secretName: tls-staging-api
+  dnsNames:
+    - staging-api.${SECRET_SIMPLEBOOKMARKS_DOMAIN}
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer

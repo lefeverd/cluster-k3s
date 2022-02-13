@@ -60,7 +60,8 @@ spec:
       traefik:
         expose: true
       web:
-        redirectTo: websecure
+        ## Do not automatically redirect, to be able to use letsencrypt http01.
+        #redirectTo: websecure
       websecure:
         tls:
           enabled: true

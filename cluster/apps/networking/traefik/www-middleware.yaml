@@ -6,4 +6,4 @@ metadata:
 spec:
   redirectRegex:
     regex: ^https://(?:www.)?(.*)
-    replacement: https://www.${1}
+    replacement: https://www.$1

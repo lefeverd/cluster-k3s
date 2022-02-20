@@ -12,3 +12,4 @@ resources:
   # - oidc-traefik-example
   - oidc-oauth2-proxy-example
   - simplebookmarks-staging
+  - simplebookmarks-production

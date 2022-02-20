@@ -5,4 +5,4 @@ resources:
   - certificate.yaml
   - route.yaml
   - oauth2-proxy-helm-release.yaml
-namespace: simplebookmarks-staging
+namespace: simplebookmarks-production

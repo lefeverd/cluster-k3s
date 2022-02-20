@@ -3,6 +3,8 @@ kind: Certificate
 metadata:
   name: tls-api
   namespace: simplebookmarks
+  annotations:
+    cert-manager.io/issue-temporary-certificate: "true"
 spec:
   commonName: api.${SECRET_SIMPLEBOOKMARKS_DOMAIN}
   secretName: tls-api

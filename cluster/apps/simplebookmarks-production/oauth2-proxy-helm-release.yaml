@@ -35,7 +35,7 @@ spec:
       configFile: |-
         http_address="0.0.0.0:4180"
         provider="oidc"
-        redirect_url="https://${SECRET_SIMPLEBOOKMARKS_DOMAIN}/oauth2/callback"
+        redirect_url="https://www.${SECRET_SIMPLEBOOKMARKS_DOMAIN}/oauth2/callback"
         oidc_issuer_url="${SECRET_SIMPLEBOOKMARKS_OAUTH_ISSUER_URL}"
         oidc_jwks_url="${SECRET_SIMPLEBOOKMARKS_OAUTH_ISSUER_URL}.well-known/openid-configuration"
         profile_url="${SECRET_SIMPLEBOOKMARKS_OAUTH_ISSUER_URL}userinfo"
@@ -50,7 +50,7 @@ spec:
         skip_provider_button="true"
         email_domains="*"
         whitelist_domains=[
-          "${SECRET_SIMPLEBOOKMARKS_DOMAIN}"
+          ".${SECRET_SIMPLEBOOKMARKS_DOMAIN}"
         ]
         # set the ID Token in the headers of the responses
         # useful to retrieve it from the frontend

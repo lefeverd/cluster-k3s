@@ -59,9 +59,8 @@ spec:
     ports:
       traefik:
         expose: true
-      #web:
-        ## Do not automatically redirect, to be able to use letsencrypt http01.
-        #redirectTo: websecure
+      web:
+        redirectTo: websecure
       websecure:
         tls:
           enabled: true

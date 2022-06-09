@@ -31,6 +31,6 @@ spec:
     spec:
       containers:
       - name: echoserver
-        image: gcr.io/kubernetes-e2e-test-images/echoserver:2.1
+        image: gcr.io/kubernetes-e2e-test-images/echoserver:2.2
         ports:
         - containerPort: 8080

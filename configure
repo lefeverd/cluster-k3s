@@ -164,10 +164,10 @@ verify_addressing() {
 
     # Verify the kube-vip IP is in the same network as the metallb range
     kubevip_subnet=$(echo "${BOOTSTRAP_KUBE_VIP_ADDR}" | cut -d. -f1,2,3)
-    if [[ "${kubevip_subnet}" != "${metallb_subnet_min}" ]]; then
-        _log "ERROR" "The subnet for kupe-vip '${BOOTSTRAP_KUBE_VIP_ADDR}' is not the same subnet as the provided metallb range '${BOOTSTRAP_METALLB_LB_RANGE}'"
-        exit 1
-    fi
+    #if [[ "${kubevip_subnet}" != "${metallb_subnet_min}" ]]; then
+    #    _log "ERROR" "The subnet for kupe-vip '${BOOTSTRAP_KUBE_VIP_ADDR}' is not the same subnet as the provided metallb range '${BOOTSTRAP_METALLB_LB_RANGE}'"
+    #    exit 1
+    #fi
 
     # Depending on the IP address, verify if it should be in the metallb range or not
     metallb_octet_min=$(echo "${BOOTSTRAP_METALLB_LB_RANGE}" | cut -d- -f1 | cut -d. -f4)
@@ -177,6 +177,7 @@ verify_addressing() {
         if [[ "${addr}" == "${BOOTSTRAP_KUBE_VIP_ADDR}" ]]; then
             found_kube_vip="true"
         fi
+        found_k8s_gateway="true"
         if [[ "${addr}" == "${BOOTSTRAP_METALLB_K8S_GATEWAY_ADDR}" ]]; then
             found_k8s_gateway="true"
         fi
@@ -202,10 +203,10 @@ verify_addressing() {
         exit 1
     fi
 
-    if [[ "${found_traefik}" == "false" ]]; then
-        _log "ERROR" "The IP for traefik '${BOOTSTRAP_METALLB_TRAEFIK_ADDR}' should be in the provided metallb range '${BOOTSTRAP_METALLB_LB_RANGE}'"
-        exit 1
-    fi
+    #if [[ "${found_traefik}" == "false" ]]; then
+    #    _log "ERROR" "The IP for traefik '${BOOTSTRAP_METALLB_TRAEFIK_ADDR}' should be in the provided metallb range '${BOOTSTRAP_METALLB_LB_RANGE}'"
+    #    exit 1
+    #fi
 }
 
 verify_age() {
@@ -252,7 +253,7 @@ verify_metallb() {
     local ip_floor=
     local ip_ceil=
     _has_envar "BOOTSTRAP_METALLB_LB_RANGE"
-    _has_envar "BOOTSTRAP_METALLB_K8S_GATEWAY_ADDR"
+    #_has_envar "BOOTSTRAP_METALLB_K8S_GATEWAY_ADDR"
     _has_envar "BOOTSTRAP_METALLB_TRAEFIK_ADDR"
 
     ip_floor=$(echo "${BOOTSTRAP_METALLB_LB_RANGE}" | cut -d- -f1)
@@ -260,7 +261,7 @@ verify_metallb() {
 
     _has_valid_ip "${ip_floor}" "BOOTSTRAP_METALLB_LB_RANGE"
     _has_valid_ip "${ip_ceil}" "BOOTSTRAP_METALLB_LB_RANGE"
-    _has_valid_ip "${BOOTSTRAP_METALLB_K8S_GATEWAY_ADDR}" "BOOTSTRAP_METALLB_K8S_GATEWAY_ADDR"
+    #_has_valid_ip "${BOOTSTRAP_METALLB_K8S_GATEWAY_ADDR}" "BOOTSTRAP_METALLB_K8S_GATEWAY_ADDR"
     _has_valid_ip "${BOOTSTRAP_METALLB_TRAEFIK_ADDR}" "BOOTSTRAP_METALLB_TRAEFIK_ADDR"
 }
 
@@ -358,15 +359,15 @@ verify_ansible_hosts() {
             exit 1
         fi
 
-        if [[ "${!node_addr}" == "${BOOTSTRAP_METALLB_K8S_GATEWAY_ADDR}" ]]; then
-            _log "ERROR" "The k8s-gateway load balancer IP '${BOOTSTRAP_METALLB_K8S_GATEWAY_ADDR}' should not be the same as the IP for node '${!node_addr}'"
-            exit 1
-        fi
+        #if [[ "${!node_addr}" == "${BOOTSTRAP_METALLB_K8S_GATEWAY_ADDR}" ]]; then
+        #    _log "ERROR" "The k8s-gateway load balancer IP '${BOOTSTRAP_METALLB_K8S_GATEWAY_ADDR}' should not be the same as the IP for node '${!node_addr}'"
+        #    exit 1
+        #fi
 
-        if [[ "${!node_addr}" == "${BOOTSTRAP_METALLB_TRAEFIK_ADDR}" ]]; then
-            _log "ERROR" "The traefik load balancer IP '${BOOTSTRAP_METALLB_TRAEFIK_ADDR}' should not be the same as the IP for node '${!node_addr}'"
-            exit 1
-        fi
+        #if [[ "${!node_addr}" == "${BOOTSTRAP_METALLB_TRAEFIK_ADDR}" ]]; then
+        #    _log "ERROR" "The traefik load balancer IP '${BOOTSTRAP_METALLB_TRAEFIK_ADDR}' should not be the same as the IP for node '${!node_addr}'"
+        #    exit 1
+        #fi
 
         if ssh -q -o BatchMode=yes -o ConnectTimeout=5 "${!node_username}"@"${!var}" "true"; then
             _log "INFO" "SSH into host '${!var}' with username '${!node_username}' was successfull"

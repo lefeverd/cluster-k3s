@@ -3,20 +3,56 @@ version: "3"
 
 tasks:
 
-  init:
-    desc: Initialize terraform dependencies
+  cloudflare:init:
+    desc: Initialize terraform
     dir: provision/terraform/cloudflare
     cmds:
-      - terraform init {{.CLI_ARGS}}
+      - "terraform init"
 
-  plan:
-    desc: Show the changes terraform will make
+  cloudflare:plan:
+    desc: Prepare all the k8s nodes for running k3s
     dir: provision/terraform/cloudflare
     cmds:
-      - terraform plan {{.CLI_ARGS}}
+      - "terraform plan"
 
-  apply:
-    desc: Apply the changes to Cloudflare
+  cloudflare:apply:
+    desc: Prepare all the k8s nodes for running k3s
     dir: provision/terraform/cloudflare
     cmds:
-      - terraform apply {{.CLI_ARGS}}
+      - "terraform apply"
+
+  cloudflare:show:
+    desc: Show the current state
+    dir: provision/terraform/cloudflare
+    cmds:
+      - "terraform show"
+
+  hetzner:init:
+    desc: Initialize terraform
+    dir: provision/terraform/hetzner
+    cmds:
+      - "terraform init"
+
+  hetzner:plan:
+    desc: Prepare all the k8s nodes for running k3s
+    dir: provision/terraform/hetzner
+    cmds:
+      - "terraform plan"
+
+  hetzner:show:
+    desc: Show the current state
+    dir: provision/terraform/hetzner
+    cmds:
+      - "terraform show"
+
+  hetzner:apply:
+    desc: Apply the plan to prepare all the k8s nodes for running k3s
+    dir: provision/terraform/hetzner
+    cmds:
+      - "terraform apply"
+
+  hetzner:refresh:
+    desc: Refresh the plan
+    dir: provision/terraform/hetzner
+    cmds:
+      - "terraform refresh"

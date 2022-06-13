@@ -4,6 +4,48 @@ Highly opinionated template for deploying a single [k3s](https://k3s.io) cluster
 
 The purpose here is to showcase how you can deploy an entire Kubernetes cluster and show it off to the world using the [GitOps](https://www.weave.works/blog/what-is-gitops-really) tool [Flux](https://toolkit.fluxcd.io/). When completed, your Git repository will be driving the state of your Kubernetes cluster. In addition with the help of the [Ansible](https://github.com/ansible-collections/community.sops), [Terraform](https://github.com/carlpett/terraform-provider-sops) and [Flux](https://toolkit.fluxcd.io/guides/mozilla-sops/) SOPS integrations you'll be able to commit [Age](https://github.com/FiloSottile/age) encrypted secrets to your public repo.
 
+## Changes by dvd
+
+Modified :
+
+- ansible/inventory/group_vars/master/k3s.yaml (node-ip, node-external-ip)
+
+Added :
+
+- nfs-provisioner
+- harbor, to host private docker images
+- argocd
+- ttrss
+- monitoring (kube-prometheus-stack)
+- oauth-example
+
+
+## Debugging network (by dvd)
+
+I had some issue with the previous k3s cluster, where ingresses could not be reached anymore.  
+Maybe metallb speakers should only be on the master, which is the only one connected to the public network (see https://stackoverflow.com/a/62459192)
+
+Here are a few debugging tips :
+
+- https://metallb.universe.tf/configuration/troubleshooting/
+  kubectl get endpoints -A
+  Verify that the loadbalancer service has endpoints, or metallb will not respond to ARP requests for that service's external IP.
+  arping and tcpdump to verify that the requests pass through the network.
+- tcpdump :
+  sudo tcpdump -i any -nnvvS -w tcpdump.pcap
+  then analyze it with wireshark
+- iptables tracing :
+  # Add a trace in the prerouting table
+  sudo iptables -t raw -A PREROUTING -p tcp --destination <public-ip> --dport 443 -j TRACE
+  # Analyze dmesg logs
+  dmesg -w
+  # Focus on a specific request with its ID
+  dmesg | grep "ID=5435" | cut -d ' ' -f 3
+  # In parallel, list all the rules with line numbers
+  sudo iptables -t raw -L -v -n --line-numbers
+  # When finished, delete the tracing rule (check its number)
+  sudo iptables -t raw -D PREROUTING <rule-number>
+
 ## Overview
 
 - [Introduction](https://github.com/k8s-at-home/flux-cluster-template#-introduction)

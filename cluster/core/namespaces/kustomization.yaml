@@ -8,3 +8,4 @@ resources:
   - system-upgrade.yaml
   - nfs-provisioner.yaml
   - harbor.yaml
+  - ttrss.yaml

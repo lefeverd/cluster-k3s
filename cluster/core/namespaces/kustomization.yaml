@@ -7,3 +7,4 @@ resources:
   - networking.yaml
   - system-upgrade.yaml
   - nfs-provisioner.yaml
+  - harbor.yaml

@@ -5,6 +5,8 @@ kind: IngressRoute
 metadata:
   name: staging-api
   namespace: simplebookmarks-staging
+  annotations:
+    acme.cert-manager.io/http01-ingress-class: traefik
 spec:
   entryPoints:
     - websecure

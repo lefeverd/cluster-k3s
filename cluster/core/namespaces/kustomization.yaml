@@ -9,3 +9,6 @@ resources:
   - nfs-provisioner.yaml
   - harbor.yaml
   - ttrss.yaml
+  - argocd.yaml
+  - simplebookmarks-production.yaml
+  - simplebookmarks-staging.yaml

@@ -15,3 +15,4 @@ resources:
   - weaveworks-kured.yaml
   - nfs-subdir-external-provisioner.yaml
   - harbor.yaml
+  - oauth2-proxy.yaml

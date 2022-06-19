@@ -10,3 +10,4 @@ resources:
   - ttrss
   - argocd
   - simplebookmarks-staging
+  - simplebookmarks-production

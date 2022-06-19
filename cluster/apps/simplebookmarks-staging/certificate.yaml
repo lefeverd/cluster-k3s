@@ -3,6 +3,8 @@ kind: Certificate
 metadata:
   name: tls-staging-api
   namespace: simplebookmarks-staging
+  annotations:
+    cert-manager.io/issue-temporary-certificate: "true"
 spec:
   commonName: api.staging.${SECRET_SIMPLEBOOKMARKS_DOMAIN}
   secretName: tls-staging-api

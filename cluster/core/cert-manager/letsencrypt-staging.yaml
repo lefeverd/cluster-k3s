@@ -20,5 +20,4 @@ spec:
           dnsZones:
             - ${SECRET_DOMAIN}
       - http01:
-          ingress:
-            class: traefik
+          ingress: {}

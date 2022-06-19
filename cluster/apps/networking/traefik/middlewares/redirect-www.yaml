@@ -1,0 +1,10 @@
+# Redirect with domain replacement
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-www
+  namespace: networking
+spec:
+  redirectRegex:
+    regex: ^https://(?:www.)?(.*)
+    replacement: https://www.$1

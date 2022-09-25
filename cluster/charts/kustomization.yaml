@@ -16,3 +16,4 @@ resources:
   - nfs-subdir-external-provisioner.yaml
   - harbor.yaml
   - oauth2-proxy.yaml
+  - elastic.yaml

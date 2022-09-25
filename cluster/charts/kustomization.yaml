@@ -12,7 +12,7 @@ resources:
   - metrics-server.yaml
   - stakater.yaml
   - traefik.yaml
-  - weaveworks-kured.yaml
+  #- weaveworks-kured.yaml
   - nfs-subdir-external-provisioner.yaml
   - harbor.yaml
   - oauth2-proxy.yaml

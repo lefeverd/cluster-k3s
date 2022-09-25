@@ -96,6 +96,7 @@ spec:
     # such as kibana.yml
     kibanaConfig:
       kibana.yml: |
+        server.publicBaseUrl: https://kibana.${SECRET_DOMAIN}
         server.ssl:
           enabled: false
           #key: /usr/share/kibana/config/certs/kibana/kibana.pem

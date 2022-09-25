@@ -1,0 +1,44 @@
+---
+
+- name: Ensure volumes exist
+  ansible.posix.mount:
+    path: item.strip().split()[1]
+    src: item.strip().split()[0]
+    fstype: ext4
+    state: present
+  with_items: "{{ mount_volumes }}"
+
+- name: UFW - Limit SSH
+  community.general.ufw:
+    rule: limit
+    port: ssh
+    proto: tcp
+
+- name: UFW - Deny incoming
+  community.general.ufw:
+    direction: incoming
+    default: deny
+
+- name: UFW - Allow outgoing
+  community.general.ufw:
+    direction: outgoing
+    default: allow
+
+- name: Allow all access from RFC1918 networks to this host
+  community.general.ufw:
+    rule: allow
+    src: '{{ item }}'
+  loop:
+    - 10.0.0.0/8
+    - 172.16.0.0/12
+    - 192.168.0.0/16
+
+- name: UFW - Deny portmapper
+  community.general.ufw:
+    rule: deny
+    port: '111'
+    proto: any
+
+- name: Enable UFW
+  community.general.ufw:
+    state: enabled

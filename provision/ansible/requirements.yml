@@ -11,3 +11,6 @@ collections:
 roles:
   - src: xanmanning.k3s
     version: v3.1.2
+  - src: https://github.com/geerlingguy/ansible-role-nfs
+    name: geerlingguy.nfs
+    version: 2.0.0

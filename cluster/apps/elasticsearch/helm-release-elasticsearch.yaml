@@ -65,12 +65,12 @@ spec:
     # syntax here
 
     extraEnvs:
-      - name: ELASTICSEARCH_USERNAME
+      - name: ELASTIC_USERNAME
         valueFrom:
           secretKeyRef:
             name: elastic-credentials-secret
             key: username
-      - name: ELASTICSEARCH_PASSWORD
+      - name: ELASTIC_PASSWORD
         valueFrom:
           secretKeyRef:
             name: elastic-credentials-secret

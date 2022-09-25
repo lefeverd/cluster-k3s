@@ -69,8 +69,8 @@ spec:
               cacert => "/ssl/elastic/elastic-stack-ca.crt"
               # SAN of elastic is not correct, but it doesn't really matter
               data_stream => "true"
-              user => "$$ELASTICSEARCH_USERNAME"
-              password => "$$ELASTICSEARCH_PASSWORD"
+              user => "$${ELASTICSEARCH_USERNAME}"
+              password => "$${ELASTICSEARCH_PASSWORD}"
           }
         }
 

@@ -12,4 +12,4 @@ resources:
   - argocd.yaml
   - simplebookmarks-production.yaml
   - simplebookmarks-staging.yaml
-  - elasticsearch
+  - elasticsearch.yaml

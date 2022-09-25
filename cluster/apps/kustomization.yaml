@@ -11,3 +11,4 @@ resources:
   - argocd
   - simplebookmarks-staging
   - simplebookmarks-production
+  - elasticsearch

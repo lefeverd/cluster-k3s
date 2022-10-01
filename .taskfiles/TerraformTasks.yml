@@ -27,6 +27,12 @@ tasks:
     cmds:
       - "terraform show"
 
+  cloudflare:refresh:
+    desc: Refresh the plan
+    dir: provision/terraform/cloudflare
+    cmds:
+      - "terraform refresh"
+
   hetzner:init:
     desc: Initialize terraform
     dir: provision/terraform/hetzner

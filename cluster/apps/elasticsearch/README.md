@@ -47,6 +47,23 @@ encryptionkey=$(docker run --rm busybox:1.31.1 /bin/sh -c "< /dev/urandom tr -dc
 
 ## Test
 
+### Locally
+
+You can logstash's pipelines locally first.  
+Copy them in the pipeline/logstash.conf file, then use docker :
+
+```
+docker run --rm -it -p 8080:8080 -v $(pwd)/pipeline/:/usr/share/logstash/pipeline/ docker.elastic.co/logstash/logstash:7.17.6
+```
+
+You can then send a test event :
+
+```
+curl -XPUT 127.0.0.1:8080 -d @borgmatic-output.txt
+```
+
+### Using kubernetes with port-forward
+
 k port-forward svc/logstash-logstash 8080
 curl -v -k --cert borg.crt --key borg.key -XPUT 'https://127.0.0.1:8080' -d @borgmatic-output.txt
 

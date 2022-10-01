@@ -10,4 +10,5 @@ resources:
   - helm-release-elasticsearch.yaml
   - helm-release-kibana.yaml
   - helm-release-logstash.yaml
+  - logstash-ingressroutetcp.yaml
 namespace: elasticsearch

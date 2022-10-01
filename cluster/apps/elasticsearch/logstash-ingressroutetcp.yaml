@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: logstash-http-input
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: HostSNI(`logstash.${SECRET_DOMAIN}`)
+    services:
+    - name: logstash-logstash
+      port: 8080
+  tls:
+    passthrough: true 

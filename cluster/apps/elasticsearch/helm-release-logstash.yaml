@@ -338,8 +338,11 @@ spec:
           protocol: TCP
           targetPort: 8080
 
+    ## Do not enable the default ingress.
+    ## We activated SSL, so we will use traefik 
+    ## to create a passthrough route.
     ingress:
-      enabled: true
+      enabled: false
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-production"
         external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"

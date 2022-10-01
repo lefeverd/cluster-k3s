@@ -35,6 +35,8 @@ openssl pkcs12 -in logstash.p12 -out logstash.key -nodes -nocerts
 All of these were put in secrets using SOPS.  
 Configuration is then put in the helm values to use the correct certificates.
 
+To generate new certificates, export the elastic-ca p12 from the secret.
+
 ## Kibana
 
 Create the encryption key :
@@ -46,6 +48,9 @@ encryptionkey=$(docker run --rm busybox:1.31.1 /bin/sh -c "< /dev/urandom tr -dc
 ## Test
 
 k port-forward svc/logstash-logstash 8080
+curl -v -k --cert borg.crt --key borg.key -XPUT 'https://127.0.0.1:8080' -d @borgmatic-output.txt
+
+With test data instead of file content :
 curl -v -k --cert client.crt --key client.key -XPUT 'https://127.0.0.1:8080' -d 'hello'
 
 (if ssl is disabled : curl -XPUT 'http://127.0.0.1:8080' -d 'hello')

@@ -340,20 +340,20 @@ spec:
           targetPort: 8080
 
     ingress:
-      enabled: false
+      enabled: true
       annotations:
-        {}
-        # kubernetes.io/tls-acme: "true"
-      className: "nginx"
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+        external-dns/is-public: "true"
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+      className: "traefik"
       pathtype: ImplementationSpecific
       hosts:
-        - host: logstash-example.local
+        - host: logstash.${SECRET_DOMAIN}
           paths:
-            - path: /beats
-              servicePort: 5044
             - path: /http
               servicePort: 8080
-      tls: []
-      #  - secretName: logstash-example-tls
-      #    hosts:
-      #      - logstash-example.local
+      tls:
+        - secretName: tls-logstash-${SECRET_DOMAIN}
+          hosts:
+            - logstash.${SECRET_DOMAIN}

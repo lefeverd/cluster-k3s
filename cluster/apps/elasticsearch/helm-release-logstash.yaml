@@ -44,7 +44,7 @@ spec:
             ssl => true
             ssl_certificate => "/ssl/logstash/logstash.crt"
             ssl_key => "/ssl/logstash/logstash.key"
-            ssl_certificate_authorities => "/ssl/logstash/ca.crt"
+            ssl_certificate_authorities => "/ssl/elastic/elastic-stack-ca.crt"
             ssl_verify_mode => "force_peer"
             # See https://discuss.elastic.co/t/json-codec-plugin-target-option-http-input/304217/3
             # Force the use of the defined "codec" by removing any additional_codecs.

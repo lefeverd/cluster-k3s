@@ -240,7 +240,7 @@ spec:
     # the same time when bootstrapping the cluster
     podManagementPolicy: "Parallel"
 
-    httpPort: 9600
+    httpPort: 8080
 
     # Custom ports to add to logstash
     extraPorts:

@@ -1,62 +1,37 @@
-[
-  {
-    "archives": [
-      {
-        "chunker_params": [
-          "buzhash",
-          19,
-          23,
-          21,
-          4095
-        ],
-        "command_line": [
-          "/usr/bin/borg",
-          "create",
-          "--patterns-from",
-          "/tmp/tmp4wqdgoho",
-          "--exclude-from",
-          "/tmp/tmphu0zgtev",
-          "--info",
-          "synoborg:dvd-fedora::{hostname}-{now:%Y-%m-%dT%H:%M:%S.%f}",
-          "/"
-        ],
-        "comment": "",
-        "duration": 369.130533,
-        "end": "2022-09-06T19:39:44.000000",
-        "hostname": "fedora",
-        "id": "075def9ee0dc96299cd6b71e6e2681cce48e46f4a7af62733ec1ce33e4bd2fa7",
-        "limits": {
-          "max_archive_size": 0.001575902205085297
-        },
-        "name": "fedora-2022-09-06T19:33:28.214524",
-        "start": "2022-09-06T19:33:35.000000",
-        "stats": {
-          "compressed_size": 15663553097,
-          "deduplicated_size": 3128352877,
-          "nfiles": 339109,
-          "original_size": 30727281528
-        },
-        "username": "root"
-      }
-    ],
-    "cache": {
-      "path": "/root/.cache/borg/03a461422ff3be71cba5235e8d40c2ecbe28b1e4c295ae2ac456563ca62c94af",
-      "stats": {
-        "total_chunks": 139673514,
-        "total_csize": 6573566303856,
-        "total_size": 10552224217507,
-        "total_unique_chunks": 2029183,
-        "unique_csize": 372642418427,
-        "unique_size": 606640177098
-      }
-    },
-    "encryption": {
-      "mode": "none"
-    },
-    "repository": {
-      "id": "03a461422ff3be71cba5235e8d40c2ecbe28b1e4c295ae2ac456563ca62c94af",
-      "last_modified": "2022-09-06T19:39:44.000000",
-      "location": "ssh://synoborg/./dvd-fedora"
-    }
-  }
-]
+{
+  "chunker_params": [
+    "buzhash",
+    19,
+    23,
+    21,
+    4095
+  ],
+  "command_line": [
+    "/usr/bin/borg",
+    "create",
+    "--patterns-from",
+    "/tmp/tmp4ny8e_56",
+    "--exclude-from",
+    "/tmp/tmppdhzwi4k",
+    "--info",
+    "synoborg:dvd-fedora-home::{hostname}-{now:%Y-%m-%dT%H:%M:%S.%f}",
+    "/home/dvd"
+  ],
+  "comment": "",
+  "duration": 134.212972,
+  "end": "2022-10-01T09:48:54.000000",
+  "hostname": "fedora",
+  "id": "ac486633ed5fb56c1aa59d34eb0f98ae4a16963f6cedb46587fd2fc9a0fff404",
+  "limits": {
+    "max_archive_size": 0.0026886992567381634
+  },
+  "name": "fedora-2022-10-01T09:46:31.817611",
+  "start": "2022-10-01T09:46:39.000000",
+  "stats": {
+    "compressed_size": 117020707552,
+    "deduplicated_size": 238946321,
+    "nfiles": 619875,
+    "original_size": 165629009506
+  },
+  "username": "dvd"
+}

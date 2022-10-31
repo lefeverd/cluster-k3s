@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: argo-helm
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  name: harbor-simplebookmarks-helm-repository
+  url: https://harbor.${SECRET_DOMAIN}
+  type: helm
+  username: ${SECRET_SIMPLEBOOKMARKS_DOCKER_USERNAME}
+  password: ${SECRET_SIMPLEBOOKMARKS_DOCKER_PASSWORD}

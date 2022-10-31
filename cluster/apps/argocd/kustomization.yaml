@@ -4,6 +4,7 @@ resources:
   - certificate.yaml
   - ingress.yaml
   - install.yaml
+  - harbor-helm-repository.yaml
 patchesStrategicMerge:
   - argocd-cmd-params-cm.yaml
 namespace: argocd

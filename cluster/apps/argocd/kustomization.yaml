@@ -5,7 +5,8 @@ resources:
   - ingress.yaml
   - install.yaml
   - simplebookmarks-git-repo.sops.yaml
-  - simplebookmarks-helm-repo.sops.yaml
+  - simplebookmarks-helm-repo.yaml
 patchesStrategicMerge:
   - argocd-cmd-params-cm.yaml
 namespace: argocd
+

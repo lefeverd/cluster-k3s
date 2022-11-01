@@ -3,17 +3,17 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: staging-api
+  name: staging-proxy
   namespace: simplebookmarks-staging
 spec:
   entryPoints:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`api.staging.${SECRET_SIMPLEBOOKMARKS_DOMAIN}`)
+      match: Host(`proxy.staging.${SECRET_SIMPLEBOOKMARKS_DOMAIN}`)
       priority: 10
       services:
         - name: oauth2-proxy
           port: 80
   tls:
-    secretName: tls-staging-api
+    secretName: tls-staging-proxy

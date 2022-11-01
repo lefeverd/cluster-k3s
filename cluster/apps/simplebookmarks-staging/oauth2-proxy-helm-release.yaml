@@ -77,21 +77,4 @@ spec:
         labels: {}
 
     ingress:
-      enabled: true
-      className: traefik
-      annotations: 
-        cert-manager.io/cluster-issuer: "letsencrypt-staging"
-        external-dns.alpha.kubernetes.io/target: "proxy.staging.${SECRET_SIMPLEBOOKMARKS_DOMAIN}"
-        external-dns/is-public: "true"
-        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-      # Only used if API capabilities (networking.k8s.io/v1) allow it
-      pathType: ImplementationSpecific
-      # Used to create an Ingress record.
-      hosts:
-        - host: "proxy.staging.${SECRET_SIMPLEBOOKMARKS_DOMAIN}"
-          paths:
-            - path: /
-      tls:
-        - secretName: tls-proxy-staging-${SECRET_SIMPLEBOOKMARKS_DOMAIN}
-          hosts:
-            - proxy.staging.${SECRET_SIMPLEBOOKMARKS_DOMAIN}
+      enabled: false

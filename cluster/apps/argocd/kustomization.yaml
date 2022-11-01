@@ -4,8 +4,8 @@ resources:
   - certificate.yaml
   - ingress.yaml
   - install.yaml
-  - simplebookmarks-git-repo.yaml
-  - simplebookmarks-helm-repo.yaml
+  - simplebookmarks-git-repo.sops.yaml
+  - simplebookmarks-helm-repo.sops.yaml
 patchesStrategicMerge:
   - argocd-cmd-params-cm.yaml
 namespace: argocd

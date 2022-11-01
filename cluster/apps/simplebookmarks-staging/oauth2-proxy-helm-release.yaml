@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://oauth2-proxy.github.io/manifests
       chart: oauth2-proxy
-      version: 5.1.0
+      version: 6.3.0
       sourceRef:
         kind: HelmRepository
         name: oauth2-proxy
@@ -36,7 +36,7 @@ spec:
       configFile: |-
         http_address="0.0.0.0:4180"
         provider="oidc"
-        redirect_url="https://staging.${SECRET_SIMPLEBOOKMARKS_DOMAIN}/oauth2/callback"
+        redirect_url="https://proxy.staging.${SECRET_SIMPLEBOOKMARKS_DOMAIN}/oauth2/callback"
         oidc_issuer_url="${SECRET_SIMPLEBOOKMARKS_OAUTH_ISSUER_URL}"
         oidc_jwks_url="${SECRET_SIMPLEBOOKMARKS_OAUTH_ISSUER_URL}.well-known/openid-configuration"
         profile_url="${SECRET_SIMPLEBOOKMARKS_OAUTH_ISSUER_URL}userinfo"
@@ -75,3 +75,23 @@ spec:
         scrapeTimeout: 30s
         # Add custom labels to the ServiceMonitor resource
         labels: {}
+
+    ingress:
+      enabled: true
+      className: traefik
+      annotations: 
+        cert-manager.io/cluster-issuer: "letsencrypt-staging"
+        external-dns.alpha.kubernetes.io/target: "proxy.staging.${SECRET_SIMPLEBOOKMARKS_DOMAIN}"
+        external-dns/is-public: "true"
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+      # Only used if API capabilities (networking.k8s.io/v1) allow it
+      pathType: ImplementationSpecific
+      # Used to create an Ingress record.
+      hosts:
+        - host: "proxy.staging.${SECRET_SIMPLEBOOKMARKS_DOMAIN}"
+          paths:
+            - path: /
+      tls:
+        - secretName: tls-proxy-staging-${SECRET_SIMPLEBOOKMARKS_DOMAIN}
+          hosts:
+            - proxy.staging.${SECRET_SIMPLEBOOKMARKS_DOMAIN}

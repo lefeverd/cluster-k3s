@@ -1,0 +1,35 @@
+apiVersion: v1
+stringData:
+    name: ENC[AES256_GCM,data:ue3x9aHsRihxPAEteub1rg8lIY10vgzc,iv:cbeAK4iOYbFkr1H++DojwZsVButnyJnb9L3LKCkKu+E=,tag:5wC6xcXkJ/ijI6wqeVD85w==,type:str]
+    sshPrivateKey: ENC[AES256_GCM,data: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,iv:sBZR780wjbpbLkji2zOJOJQiolat8o8+3cbvN9G3brU=,tag:OiVCsgCVt01MKFrqQzzseQ==,type:str]
+    type: ENC[AES256_GCM,data:5qTZ,iv:o2L1BGQ+/iiaORvcmVGMoJTfAIoBDCwkCzhhyFlq9LU=,tag:oaPgRg5dOK91veiByliUjQ==,type:str]
+    url: ENC[AES256_GCM,data:3VT69zcgnWhgyR9oek9zTDLyRzF5MNAXK38ipedjRzEu3sWAM0ixcblWiPlO5BL0zoo=,iv:fdzpn/GtDWSRaXq3CQOBQBXUkvnGTs+HukZDt72IeVM=,tag:vqgC4cr9EAZC9hAVVPh0tA==,type:str]
+kind: Secret
+metadata:
+    annotations:
+        managed-by: argocd.argoproj.io
+    labels:
+        argocd.argoproj.io/secret-type: repository
+    name: simplebookmarks-git-repo
+    namespace: argocd
+type: Opaque
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1adgzd3kcelpz23rfek7hgp9saega7vea9n2fpkd6qqunpczfpv5sw8ns4a
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVNFVJSlV1cnc1aStqMlNP
+            N3duZ1Rzem1vbGdPZ0ZkSHpWbEE3NVdaYkE0CmpOMmNnTXRtMnZSL2hsRVZwZitI
+            dFZhWDFjbUpxajgzc09KcHdUWGU3enMKLS0tIFlvQVdsc1FFMW9LTm1CaWI5Qkhh
+            TTZZcEdVTHozN3pnZEIrSzU5ODQ4OUkKSL5Rm3XY7EaMUYWMoAMLCnXhFO63XTSe
+            5zznT7237u+WZC6u/Coe6A42CW15pwI7WFzU4rU0aOcP5JVs7/it2g==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-10-31T20:20:32Z"
+    mac: ENC[AES256_GCM,data:57KeDESxJHX+tswdTFwp65FrRAxVpVPwt3bdcRz9NZuu+hOHtwzlM65Qb4XVzaCQXWhJ+SymLRf81zKMhP+LejedPFnMVM0SMjO7npjwCaA084mLJHPdPSCgfoBk30MpA0CSo3nX2LSR7Kv+GS8lP6jHd5cedHSUq2oBpGVfKhc=,iv:zmXu9w9jWnbeSFZZqJfOnVUt2tPGHdWuhHRLLSwR2Rk=,tag:8hRaS6zgzJU3rqcCGcjYCg==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1

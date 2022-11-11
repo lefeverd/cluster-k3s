@@ -57,14 +57,17 @@ spec:
         filter {
           date {
               match => ["[document][end]", "ISO8601", "yyyy-MM-dd'T'HH:mm:ss.SSS", "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"]
+              timezone => "Europe/Paris"
           }
           date {
               match => ["[document][end]", "ISO8601", "yyyy-MM-dd'T'HH:mm:ss.SSS", "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"]
               target => "end_date"
+              timezone => "Europe/Paris"
           }
           date {
               match => ["[document][start]", "ISO8601", "yyyy-MM-dd'T'HH:mm:ss.SSS", "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"]
               target => "start_date"
+              timezone => "Europe/Paris"
           }
           mutate {
               remove_field => ["[document][chunker_params]"]

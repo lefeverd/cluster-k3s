@@ -13,3 +13,4 @@ resources:
   - simplebookmarks-production.yaml
   - simplebookmarks-staging.yaml
   - elasticsearch.yaml
+  - gitlab.yaml

@@ -44,11 +44,11 @@ spec:
         [[runners]]
           [runners.kubernetes]
             image_pull_secrets = ["docker-registry-harbor"]
-            cpu_request = "500m"
-            cpu_limit = "500m"
+            cpu_request = "1"
+            cpu_limit = "1"
             memory_request = "2Gi"
             memory_limit = "2Gi" 
-            helper_cpu_limit = "200m"
+            helper_cpu_limit = "800m"
             helper_cpu_request = "200m"
             helper_memory_request = "512Mi"
             helper_memory_limit = "512Mi"

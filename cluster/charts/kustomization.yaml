@@ -17,3 +17,4 @@ resources:
   - harbor.yaml
   - oauth2-proxy.yaml
   - elastic.yaml
+  - gitlab.yaml

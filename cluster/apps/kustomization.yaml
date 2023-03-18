@@ -12,3 +12,4 @@ resources:
   - simplebookmarks-staging
   - simplebookmarks-production
   - elasticsearch
+  - gitlab

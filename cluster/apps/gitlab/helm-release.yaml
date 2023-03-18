@@ -43,6 +43,7 @@ spec:
       config: |
         [[runners]]
           [runners.kubernetes]
+            imagePullSecrets = "docker-registry-harbor"
             cpu_request = "500m"
             cpu_limit = "500m"
             memory_request = "2Gi"

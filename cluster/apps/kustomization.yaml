@@ -9,7 +9,7 @@ resources:
   - harbor
   - ttrss
   - argocd
-  - simplebookmarks-staging
+  #- simplebookmarks-staging
   - simplebookmarks-production
   - elasticsearch
   - gitlab

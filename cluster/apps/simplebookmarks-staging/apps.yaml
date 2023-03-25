@@ -1,0 +1,23 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: simplebookmarks-staging
+  namespace: flux-system
+spec:
+  interval: 10m
+  targetNamespace: simplebookmarks-staging
+  sourceRef:
+    kind: GitRepository
+    name: simplebookmarks-deploy
+  path: "./staging"
+  prune: true
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets

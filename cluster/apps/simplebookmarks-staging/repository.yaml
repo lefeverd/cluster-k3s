@@ -1,0 +1,12 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: simplebookmarks-deploy
+  namespace: flux-system
+spec:
+  interval: 5m
+  url: ssh://git@gitlab.com/lefeverd/simplebookmarks-deploy.git
+  ref:
+    branch: feature/flux
+  secretRef:
+    name: ssh-credentials

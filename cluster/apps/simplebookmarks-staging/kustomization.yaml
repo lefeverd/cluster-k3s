@@ -4,6 +4,4 @@ resources:
   - namespace.yaml
   - ssh-credentials.sops.yaml
   - repository.yaml
-  - oauth2-proxy-helm-release.yaml
   - apps.yaml
-

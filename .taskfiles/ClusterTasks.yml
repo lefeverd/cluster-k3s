@@ -74,3 +74,8 @@ tasks:
       - task: gitrepositories
       - task: certificates
       - task: pods
+
+  reconcile-simplebookmarks-staging:
+    desc: Reconcile simplebookmarks-staging
+    cmds:
+      - flux reconcile source git simplebookmarks-deploy && flux reconcile kustomization simplebookmarks-staging

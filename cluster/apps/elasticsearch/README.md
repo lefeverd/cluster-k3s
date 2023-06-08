@@ -1,5 +1,11 @@
 # ELK
 
+## Elasticsearch configuration
+
+The creation of settings and mappings is done through a `postExec` hook in the elasticsearch helm configuration.  
+The downside is that the pod stays longer in `PodInitializing`, as the hook waits for elastic to be up and running.  
+Thus we can't really see elastic's logs until the hook finishes.
+
 ## Certificates creation
 
 See [s/blob/7.17/elasticsearch/examples/security/Makefile](https://github.com/elastic/helm-charts/blob/v7.17.3/elasticsearch/examples/security/Makefile)

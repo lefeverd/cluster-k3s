@@ -9,3 +9,9 @@ configMapGenerator:
   - settings-backup-logs.json
   - template-backup-logs.json
   - run.sh
+generatorOptions:
+  # If enabled, a hash is added as suffix of the cm name.
+  # But the name of the configMap that we use in the HelmRelease values is not updated,
+  # so it fails to find the configMap.
+  # Disabling it makes the reconciliation in case of the configMap changes a bit longer.
+  disableNameSuffixHash: true

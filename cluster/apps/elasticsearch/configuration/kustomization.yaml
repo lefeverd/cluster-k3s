@@ -1,0 +1,11 @@
+configMapGenerator:
+- name: elasticsearch-configuration-cm
+  # This configMap contains the necessary templates to configure elasticsearch.
+  # The configMap is mounted in the elasticsearch pod.
+  # The postExec hook in the helm values calls the run.sh script.
+  files:
+  - ilm-backup-logs.json
+  - mapping-backup-logs.json
+  - settings-backup-logs.json
+  - template-backup-logs.json
+  - run.sh

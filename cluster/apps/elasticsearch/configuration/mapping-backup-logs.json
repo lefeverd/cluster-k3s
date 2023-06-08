@@ -1,0 +1,23 @@
+{
+    "template": {
+      "mappings": {
+        "properties": {
+          "@timestamp": {
+            "type": "date",
+            "format": "date_optional_time||epoch_millis"
+          },
+          "start_date": {
+            "type": "date",
+            "format": "date_optional_time||epoch_millis"
+          },
+          "end_date": {
+            "type": "date",
+            "format": "date_optional_time||epoch_millis"
+          }
+        }
+      }
+    },
+    "_meta": {
+      "description": "Mappings for backup-logs"
+    }
+  }

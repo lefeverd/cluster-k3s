@@ -1,0 +1,9 @@
+{
+    "index_patterns": ["logs-backup*"],
+    "data_stream": { },
+    "composed_of": [ "backup-logs-mappings", "backup-logs-settings" ],
+    "priority": 500,
+    "_meta": {
+      "description": "Template for backup logs"
+    }
+  }

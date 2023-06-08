@@ -169,15 +169,18 @@ spec:
       annotations: {}
 
     extraVolumes:
-      []
       # - name: extras
       #   emptyDir: {}
+      - name: configuration-files
+        configMap:
+          name: elasticsearch-configuration-cm
 
     extraVolumeMounts:
-      []
       # - name: extras
       #   mountPath: /usr/share/extras
       #   readOnly: true
+      - name: configuration-files
+        mountPath: /configuration
 
     extraContainers:
       []
@@ -303,25 +306,21 @@ spec:
     healthNameOverride: ""
 
     lifecycle:
-      {}
       # preStop:
       #   exec:
       #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
-      # postStart:
-      #   exec:
-      #     command:
-      #       - bash
-      #       - -c
-      #       - |
-      #         #!/bin/bash
-      #         # Add a template to adjust number of shards/replicas
-      #         TEMPLATE_NAME=my_template
-      #         INDEX_PATTERN="logstash-*"
-      #         SHARD_COUNT=8
-      #         REPLICA_COUNT=1
-      #         ES_URL=http://localhost:9200
-      #         while [[ "$(curl -s -o /dev/null -w '%{http_code}\n' $ES_URL)" != "200" ]]; do sleep 1; done
-      #         curl -XPUT "$ES_URL/_template/$TEMPLATE_NAME" -H 'Content-Type: application/json' -d'{"index_patterns":['\""$INDEX_PATTERN"\"'],"settings":{"number_of_shards":'$SHARD_COUNT',"number_of_replicas":'$REPLICA_COUNT'}}'
+      postStart:
+        exec:
+          command:
+            - bash
+            - -c
+            - |
+              #!/bin/bash
+              ES_URL=https://localhost:9200
+              while [[ "$(curl -u \"elastic:${ELASTIC_PASSWORD}\" -k -s -o /dev/null -w '%{http_code}\n' $ES_URL)" != "200" ]]; do sleep 1; done
+              # Execute the configuration script mounted from the configMap.
+              # The configMap is created from the configuration directory.
+              /configuration/run.sh
 
     sysctlInitContainer:
       enabled: true

@@ -65,12 +65,13 @@ curl -XPUT 127.0.0.1:8080 -d @borgmatic-output.txt
 ### Using kubernetes with port-forward
 
 k port-forward svc/logstash-logstash 8080
-curl -v -k --cert borg.crt --key borg.key -XPUT 'https://127.0.0.1:8080' -d @borgmatic-output.txt
+curl -v -k --cert logstash.crt --key logstash.key -XPUT 'https://127.0.0.1:8080' -d @borgmatic-output.txt
 
 With test data instead of file content :
-curl -v -k --cert client.crt --key client.key -XPUT 'https://127.0.0.1:8080' -d 'hello'
+curl -v -k --cert logstash.crt --key logstash.key -XPUT 'https://127.0.0.1:8080' -d 'hello'
 
 (if ssl is disabled : curl -XPUT 'http://127.0.0.1:8080' -d 'hello')
 
 in ES, data is indexed in a log datastream :
+kubectl port-forward svc/elasticsearch-master 9200
 curl 127.0.0.1:9200/logs-generic-default/_search | jq

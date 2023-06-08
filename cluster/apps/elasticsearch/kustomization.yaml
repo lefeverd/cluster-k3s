@@ -1,6 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - configuration
   - elastic-ca-secret.sops.yaml
   - elastic-certificate-secret.sops.yaml
   - elastic-credentials-secret.sops.yaml

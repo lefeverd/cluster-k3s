@@ -1,0 +1,10 @@
+{
+    "template": {
+      "settings": {
+        "index.lifecycle.name": "backup-logs-policy"
+      }
+    },
+    "_meta": {
+      "description": "ILM Settings for backup-logs"
+    }
+  }

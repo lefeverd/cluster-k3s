@@ -81,3 +81,74 @@ curl -v -k --cert logstash.crt --key logstash.key -XPUT 'https://127.0.0.1:8080'
 in ES, data is indexed in a log datastream :
 kubectl port-forward svc/elasticsearch-master 9200
 curl 127.0.0.1:9200/logs-generic-default/_search | jq
+
+### Using kibana
+
+You can test to index a document directly in Kibana (so without logstash's transformations).  
+You can use the dev tools, and execute :
+
+```
+POST logs-backup-default/_doc
+{
+    "document": {
+      "end": "2023-06-07T18:31:33.000000",
+      "id": "23c04c2fded1a65446750fb2fa1facd6f876550a95c03583b6fee60ba7d0b9b8",
+      "username": "dvd",
+      "name": "fedora-2023-06-07T18:22:23.038764",
+      "comment": "",
+      "backup_name": "home",
+      "duration": 525.113209,
+      "stats": {
+        "nfiles": 771671,
+        "original_size": 188328514232,
+        "original_size_mb": 179604,
+        "deduplicated_size_mb": 185,
+        "compressed_size": 135940319653,
+        "compressed_size_mb": 129642,
+        "deduplicated_size": 194576003
+      },
+      "command_line": [
+        "/usr/bin/borg",
+        "create",
+        "--patterns-from",
+        "/tmp/tmp82fxt5w2",
+        "--exclude-from",
+        "/tmp/tmp90qm3vwt",
+        "ssh://synoborg/./dvd-fedora-home::{hostname}-{now:%Y-%m-%dT%H:%M:%S.%f}",
+        "--info"
+      ],
+      "limits": {
+        "max_archive_size": 0.0032176080666509025
+      },
+      "start": "2023-06-07T18:22:48.000000",
+      "hostname": "fedora"
+    },
+    "url": {
+      "domain": "logstash.dhosting.xyz",
+      "path": "/http"
+    },
+    "host": {
+      "ip": "10.42.152.196"
+    },
+    "@timestamp": "2023-06-07T16:33:33.000Z",
+    "@version": "1",
+    "http": {
+      "method": "PUT",
+      "request": {
+        "mime_type": "application/json",
+        "body": {
+          "bytes": "814"
+        }
+      },
+      "version": "HTTP/1.1"
+    },
+    "user_agent": {
+      "original": "curl/7.85.0"
+    },
+    "start_date": "2023-06-07T16:22:48.000Z",
+    "end_date": "2023-06-07T16:31:33.000Z",
+    "event": {
+      "original": "{  \"chunker_params\": [    \"buzhash\",    19,    23,    21,    4095  ],  \"command_line\": [    \"/usr/bin/borg\",    \"create\",    \"--patterns-from\",    \"/tmp/tmp82fxt5w2\",    \"--exclude-from\",    \"/tmp/tmp90qm3vwt\",    \"ssh://synoborg/./dvd-fedora-home::{hostname}-{now:%Y-%m-%dT%H:%M:%S.%f}\",    \"--info\"  ],  \"comment\": \"\",  \"duration\": 525.113209,  \"end\": \"2023-06-07T18:31:33.000000\",  \"hostname\": \"fedora\",  \"id\": \"23c04c2fded1a65446750fb2fa1facd6f876550a95c03583b6fee60ba7d0b9b8\",  \"limits\": {    \"max_archive_size\": 0.0032176080666509025  },  \"name\": \"fedora-2023-06-07T18:22:23.038764\",  \"start\": \"2023-06-07T18:22:48.000000\",  \"stats\": {    \"compressed_size\": 135940319653,    \"deduplicated_size\": 194576003,    \"nfiles\": 771671,    \"original_size\": 188328514232  },  \"username\": \"dvd\",  \"backup_name\": \"home\"}"
+    }
+  }
+```

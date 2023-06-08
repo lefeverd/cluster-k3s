@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# This script creates some objects in elasticsearch in order to configure the ingestion of backup logs.
+# See https://www.elastic.co/guide/en/elasticsearch/reference/current/set-up-a-data-stream.html
+#
 
 ES_URL=https://localhost:9200
 

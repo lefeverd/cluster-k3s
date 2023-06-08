@@ -317,10 +317,15 @@ spec:
             - |
               #!/bin/bash
               ES_URL=https://localhost:9200
+              echo "postStart command starting"
+              echo "$ES_URL"
+              echo "$ELASTIC_PASSWORD"
+              echo "\$ELASTIC_PASSWORD"
               while [[ "$(curl -u \"elastic:$ELASTIC_PASSWORD\" -k -s -o /dev/null -w '%{http_code}\n' $ES_URL)" != "200" ]]; do sleep 1; done
               # Execute the configuration script mounted from the configMap.
               # The configMap is created from the configuration directory.
               /configuration/run.sh
+              echo "postStart command finished"
 
     sysctlInitContainer:
       enabled: true

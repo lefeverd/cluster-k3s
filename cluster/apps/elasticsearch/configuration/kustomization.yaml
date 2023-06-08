@@ -15,3 +15,5 @@ generatorOptions:
   # so it fails to find the configMap.
   # Disabling it makes the reconciliation in case of the configMap changes a bit longer.
   disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled

@@ -71,6 +71,9 @@ spec:
           }
           mutate {
               remove_field => ["[document][chunker_params]"]
+              add_field => { "[data_stream][type]" => "logs" }  # will be used to route to our data stream in ES, logs-backup-default
+              add_field => { "[data_stream][dataset]" => "backup" }  # will be used to route to our data stream in ES, logs-backup-default
+              add_field => { "[data_stream][namespace]" => "default" }  # will be used to route to our data stream in ES, logs-backup-default
           }
           ruby {
               code => "event.set('[document][stats][deduplicated_size_mb]', event.get('[document][stats][deduplicated_size]').to_i / (1024 * 1024))"
@@ -92,6 +95,8 @@ spec:
               cacert => "/ssl/elastic/elastic-stack-ca.crt"
               # SAN of elastic is not correct, but it doesn't really matter
               data_stream => "true"
+              # routes events by deriving the data stream name using specific event fields
+              data_stream_auto_routing => "true"
               user => "$${ELASTICSEARCH_USERNAME}"
               password => "$${ELASTICSEARCH_PASSWORD}"
           }

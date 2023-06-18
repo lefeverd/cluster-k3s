@@ -1,0 +1,9 @@
+---
+# This needs to be applied after the chart, as the chart contains the CRD definitions.
+# That's why metallb-system chart is instaled in core, and these in apps (which dependsOn core).
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ip-address-pool.yaml
+  - advertisement.yaml
+namespace: metallb-system

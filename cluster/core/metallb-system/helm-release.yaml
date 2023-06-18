@@ -28,3 +28,9 @@ spec:
           protocol: layer2
           addresses:
             - "${METALLB_LB_RANGE}"
+    nodeSelector:
+      node-role.kubernetes.io/master: true
+    tolerations:
+      - key: "node-role.kubernetes.io/master"
+        operator: "Exists"
+        effect: "NoSchedule"

@@ -25,3 +25,8 @@ spec:
         host all all localhost trust
         host all all 10.42.0.0/16 trust
         host all all 10.43.0.0/16 trust
+    postgresql:
+      auth:
+        username: ttrss
+        password: ttrss
+        database: ttrss

@@ -79,3 +79,8 @@ tasks:
     desc: Reconcile simplebookmarks-staging
     cmds:
       - flux reconcile source git simplebookmarks-deploy && flux reconcile kustomization simplebookmarks-staging
+
+  errors:
+    desc: Show flux errors
+    cmds:
+      - flux logs --all-namespaces --level=error

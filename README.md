@@ -25,6 +25,12 @@ Added :
 I had some issue with the previous k3s cluster, where ingresses could not be reached anymore.  
 Maybe metallb speakers should only be on the master, which is the only one connected to the public network (see https://stackoverflow.com/a/62459192)
 
+Update 2023-06-18: after some investigations, it seems like metallb was not correctly set up.  
+I upgraded to a new version, and defined a better configuration.  
+First the chart and CRD's definitions are installed (see core/metallb-system), then the configuration is created (using the CRD's, see apps/metallb-system).  
+We first declare an `IPAddressPool` using our floating IP, then a `L2Advertisement`, stating that the IP's must be advertised from our master node.  
+We also ensure that metallb controller and traefik both run on the master node.
+
 Here are a few debugging tips :
 
 - https://metallb.universe.tf/configuration/troubleshooting/
@@ -45,6 +51,11 @@ Here are a few debugging tips :
   sudo iptables -t raw -L -v -n --line-numbers
   # When finished, delete the tracing rule (check its number)
   sudo iptables -t raw -D PREROUTING <rule-number>
+
+## Recreate master node
+
+You can delete the node in Hetzner, then recreate it with terraform `task terraform:plan` followed by `task terraform:apply`.  
+The only issue was to recreate the floating IP configuration, as a workaround you can delete it with `cd provision/terraform/hetzner/ && terraform taint module.hetzner_nodes.null_resource.floating_ip_setup && terraform plan && terraform apply`.
 
 ## Overview
 

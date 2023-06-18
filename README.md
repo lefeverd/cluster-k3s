@@ -8,7 +8,7 @@ The purpose here is to showcase how you can deploy an entire Kubernetes cluster 
 
 Modified :
 
-- ansible/inventory/group_vars/master/k3s.yaml (node-ip, node-external-ip)
+- ansible/inventory/group_vars/master/k3s.yaml (node-ip, node-external-ip, node-taint)
 
 Added :
 

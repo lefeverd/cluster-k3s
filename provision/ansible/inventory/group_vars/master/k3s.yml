@@ -13,6 +13,14 @@ k3s_server:
   advertise-address: "{{ hostvars[inventory_hostname][ansible_interface].ipv4.address }}"
   node-ip: "{{ hostvars[inventory_hostname][ansible_interface].ipv4.address }}"
   node-external-ip: "{{ hostvars[inventory_hostname].ansible_eth0.ipv4.address }}"
+  node-taint:
+    # Node taints are only added at registration time, when the node first joins the cluster
+    # Make master node not schedulable, only to certain system pods
+    # As this was added after the cluster initial build, I added it manually with :
+    # kubectl taint nodes k8s-0 node-role.kubernetes.io/master=true:NoSchedule
+    - "node-role.kubernetes.io/master=true:NoSchedule"
+    #- "k3s-controlplane=true:NoExecute"  # core-dns only tolerates node-role.kubernetes.io/master
+    #- "node-role.kubernetes.io/control-plane"  # core-dns only tolerates node-role.kubernetes.io/master
   bind-address: 0.0.0.0
   tls-san:
     # kube-vip

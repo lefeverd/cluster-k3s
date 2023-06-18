@@ -30,4 +30,5 @@ spec:
         effect: "NoSchedule"
     crds:
       enabled: true
+      # default validationFailurePolicy of Fail makes apps reconciliation fail if the webhook is not yet started.
       validationFailurePolicy: Ignore

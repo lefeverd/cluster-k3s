@@ -26,6 +26,13 @@ spec:
     remediation:
       retries: 3
   values:
+    # Traefik must run on the master node (the one having the floating ip)
+    nodeSelector:
+      node-role.kubernetes.io/master: "true"
+    tolerations:
+      - key: "node-role.kubernetes.io/master"
+        operator: "Exists"
+        effect: "NoSchedule"
     deployment:
       kind: Deployment
       replicas: 1

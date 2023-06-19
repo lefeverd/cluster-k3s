@@ -1,6 +1,7 @@
 ---
-mount_volumes:
-  - /dev/sbd /srv/nfs
+
+## Name of the volume as shown in hetzner interface
+volume: /dev/disk/by-id/scsi-0HC_Volume_15885228
 nfs_network: "10.0.0.0/255.255.255.0"
 nfs_exports:
   - /srv/nfs {{ nfs_network }}(rw,sync,no_root_squash)

@@ -34,5 +34,5 @@ variable "private_ip_offset" {
 
 variable "volume_size" {
     type = number
-    default = 10
+    default = 60
 }

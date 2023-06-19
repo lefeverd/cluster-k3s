@@ -1,12 +1,31 @@
 ---
 
-- name: Ensure volumes exist
-  ansible.posix.mount:
-    path: item.strip().split()[1]
-    src: item.strip().split()[0]
+- name: Create /srv/nfs
+  ansible.builtin.file:
+    path: /srv/nfs
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Create an ext4 filesystem on the volume
+  community.general.filesystem:
     fstype: ext4
     state: present
-  with_items: "{{ mount_volumes }}"
+    dev: "{{ volume }}"
+
+- name: Fetch the UUID of the volume
+  command: blkid -s UUID -o value {{ volume }}
+  changed_when: false
+  register: blkid_out
+
+- name: Mount volume by UUID
+  ansible.posix.mount:
+    path: /srv/nfs
+    src: UUID={{ blkid_out.stdout }}
+    fstype: ext4
+    opts: defaults
+    state: mounted
 
 - name: UFW - Limit SSH
   community.general.ufw:

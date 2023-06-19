@@ -36,6 +36,8 @@ resource "hcloud_volume" "volume" {
     name = "volume-${element(hcloud_server.hosts.*.name, count.index)}"
     size = "${var.volume_size}"
     server_id = "${element(hcloud_server.hosts.*.id, count.index)}"
+    automount = true
+    format    = "ext4"
 }
 
 resource "hcloud_server_network" "hostsnetwork" {

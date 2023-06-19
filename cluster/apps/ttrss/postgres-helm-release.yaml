@@ -10,23 +10,31 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: postgresql
-      version: 11.9.13
+      version: 10.16.2
       sourceRef:
         kind: HelmRepository
-        name: bitnami
+        name: bitnami-pre-2022
         namespace: flux-system
       interval: 5m
   values:
     global:
       storageClass: nfs-client
-      postgresql:
-        auth:
-          username: ttrss
-          password: ttrss
-          database: ttrss
-    primary:
-      pgHbaConfiguration: |-
-        local all all trust
-        host all all localhost trust
-        host all all 10.42.0.0/16 trust
-        host all all 10.43.0.0/16 trust
+    pgHbaConfiguration: |-
+      local all all trust
+      host all all localhost trust
+      host all all 10.42.0.0/16 trust
+      host all all 10.43.0.0/16 trust
+    ## This is for new versions
+    #global:
+    #  storageClass: nfs-client
+    #  postgresql:
+    #    auth:
+    #      username: ttrss
+    #      password: ttrss
+    #      database: ttrss
+    #primary:
+    #  pgHbaConfiguration: |-
+    #    local all all trust
+    #    host all all localhost trust
+    #    host all all 10.42.0.0/16 trust
+    #    host all all 10.43.0.0/16 trust

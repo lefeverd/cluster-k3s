@@ -7,3 +7,15 @@ metadata:
 spec:
   interval: 1h
   url: https://charts.bitnami.com/bitnami
+
+---
+
+# Older version
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: bitnami-pre-2022
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami

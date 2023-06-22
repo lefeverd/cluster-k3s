@@ -1,4 +1,5 @@
 {
+  "backup_name": "fedora",
   "chunker_params": [
     "buzhash",
     19,
@@ -19,14 +20,14 @@
   ],
   "comment": "",
   "duration": 134.212972,
-  "end": "2023-06-07T09:48:54.000000",
+  "end": "2023-06-22T09:48:54.000000",
   "hostname": "fedora",
   "id": "ac486633ed5fb56c1aa59d34eb0f98ae4a16963f6cedb46587fd2fc9a0fff404",
   "limits": {
     "max_archive_size": 0.0026886992567381634
   },
   "name": "fedora-2022-10-01T09:46:31.817611",
-  "start": "2023-06-07T09:46:39.000000",
+  "start": "2023-06-22T09:46:39.000000",
   "stats": {
     "compressed_size": 117020707552,
     "deduplicated_size": 238946321,

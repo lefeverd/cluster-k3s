@@ -70,8 +70,9 @@ curl -XPUT 127.0.0.1:8080 -d @borgmatic-output.txt
 
 ### Using kubernetes with port-forward
 
-k port-forward svc/logstash-logstash 8080
+k port-forward svc/logstash-logstash 8080&
 curl -v -k --cert logstash.crt --key logstash.key -XPUT 'https://127.0.0.1:8080' -d @borgmatic-output.txt
+kill %1
 
 With test data instead of file content :
 curl -v -k --cert logstash.crt --key logstash.key -XPUT 'https://127.0.0.1:8080' -d 'hello'

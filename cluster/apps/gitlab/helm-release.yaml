@@ -40,6 +40,7 @@ spec:
           resources: ["configmaps"]
           verbs: ["list", "get", "create", "delete", "update"]
     runners:
+      locked: false
       config: |
         [[runners]]
           [runners.kubernetes]

@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  url: ssh://git@github.com:lefeverd/simplebookmarks-deploy.git
+  url: ssh://git@github.com/lefeverd/simplebookmarks-deploy.git
   ref:
     branch: feature/flux
   secretRef:

@@ -7,4 +7,4 @@ spec:
   interval: 5m
   url: https://github.com/elastic/helm-charts
   ref:
-    tag: v7.17.3
+    tag: v8.5.1

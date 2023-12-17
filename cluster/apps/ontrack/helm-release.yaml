@@ -22,6 +22,7 @@ spec:
       casc:
         enabled: true
         map: ontrack-casc
+        secret: ontrack-casc-secret
     ingress:
       enabled: true
       annotations:

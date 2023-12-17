@@ -34,7 +34,14 @@ spec:
           hosts:
             - ontrack.${SECRET_DOMAIN}
     elasticsearch:
-      enabled: false
+      enabled: true
+      esJavaOpts: -Xmx384m -Xms384m -XX:-HeapDumpOnOutOfMemoryError
+      resources:
+        requests:
+          cpu: 300m
+          memory: 512M
+        limits:
+          memory: 1024M
       volumeClaimTemplate:
         accessModes: [ ReadWriteOnce ]
         resources:

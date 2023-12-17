@@ -14,4 +14,4 @@ resources:
   - simplebookmarks-staging.yaml
   - elasticsearch.yaml
   - gitlab.yaml
-  - ontrack
+  - ontrack.yaml

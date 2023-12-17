@@ -34,6 +34,7 @@ spec:
           hosts:
             - ontrack.${SECRET_DOMAIN}
     elasticsearch:
+      enabled: false
       volumeClaimTemplate:
         accessModes: [ ReadWriteOnce ]
         resources:

@@ -41,7 +41,7 @@ spec:
             storage: 5Gi
         storageClassName: "nfs-client"
     postgresql:
-      persistence:
+      global:
         storageClass: "nfs-client"
     rabbitmq:
       persistence:

@@ -18,3 +18,4 @@ resources:
   - oauth2-proxy.yaml
   - elastic.yaml
   - gitlab.yaml
+  - ontrack.yaml

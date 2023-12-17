@@ -43,3 +43,6 @@ spec:
     postgresql:
       persistence:
         storageClass: "nfs-client"
+    rabbitmq:
+      persistence:
+        storageClass: "nfs-client"

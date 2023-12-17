@@ -17,3 +17,29 @@ spec:
   values:
     ontrack:
       url: "https://ontrack.${SECRET_DOMAIN}"
+      persistence:
+        storageClass: nfs-client
+    ingress:
+      enabled: true
+      annotations:
+        ingress.kubernetes.io/ssl-redirect: "true"
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+      kubernetes.io/ingress.class: "traefik"
+      # kubernetes.io/tls-acme: "true"
+      hosts:
+        - host: ontrack.${SECRET_DOMAIN}
+      tls:
+        - secretName: tls-ontrack-${SECRET_DOMAIN}
+          hosts:
+            - ontrack.${SECRET_DOMAIN}
+    elasticsearch:
+      volumeClaimTemplate:
+        accessModes: [ ReadWriteOnce ]
+        resources:
+          requests:
+            storage: 5Gi
+        storageClassName: "nfs-client"
+    postgresql:
+      persistence:
+        storageClass: "nfs-client"

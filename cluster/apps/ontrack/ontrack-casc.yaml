@@ -1,0 +1,5 @@
+ontrack:
+  config:
+    github:
+      - name: GitHub
+        token: ${SECRET_ONTRACK_GITHUB_TOKEN}

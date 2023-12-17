@@ -19,6 +19,9 @@ spec:
       url: "https://ontrack.${SECRET_DOMAIN}"
       persistence:
         storageClass: nfs-client
+      casc:
+        enabled: true
+        map: ontrack-casc
     ingress:
       enabled: true
       annotations:

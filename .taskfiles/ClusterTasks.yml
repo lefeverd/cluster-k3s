@@ -80,6 +80,11 @@ tasks:
     cmds:
       - flux reconcile source git simplebookmarks-deploy && flux reconcile kustomization simplebookmarks-staging
 
+  reconcile-apps:
+    desc: Reconcile apps
+    cmds:
+      - flux reconcile ks apps --with-source
+
   errors:
     desc: Show flux errors
     cmds:

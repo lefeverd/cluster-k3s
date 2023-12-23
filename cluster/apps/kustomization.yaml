@@ -13,6 +13,5 @@ resources:
   - simplebookmarks-production
   - elasticsearch
   - gitlab
-  - github
   - metallb-system
   - ontrack

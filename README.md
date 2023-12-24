@@ -74,3 +74,14 @@ Had issues with some CRD's, so needed to trigger :
 `kubectl apply --server-side --force-conflicts -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/operator-crds.yaml`
 
 Then redo `kubectl replace -f tigera-operator.yaml`.
+
+## 2023-12 Upgrade flux
+
+Followed https://fluxcd.io/flux/installation/upgrade/#upgrade-with-git :
+
+```
+flux install --export > ./cluster/flux/flux-system/gotk-components.yaml
+```
+
+Commit and wait for sync.  
+Then, upgrade manifests by following https://github.com/fluxcd/flux2/releases/tag/v2.0.0.

@@ -57,6 +57,23 @@ Here are a few debugging tips :
 You can delete the node in Hetzner, then recreate it with terraform `task terraform:plan` followed by `task terraform:apply`.  
 The only issue was to recreate the floating IP configuration, as a workaround you can delete it with `cd provision/terraform/hetzner/ && terraform taint module.hetzner_nodes.null_resource.floating_ip_setup && terraform plan && terraform apply`.
 
+## 2023-12 Upgrade k3s and calico
+
+Bumped k3s version, then triggered the ansible install task.  
+Had to comment out the feature gate `MixedProtocolLBService` (went GA).  
+Had issues with calico, upgraded by following docs at https://docs.tigera.io/calico/latest/operations/upgrading/kubernetes-upgrade :
+
+```
+curl https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/tigera-operator.yaml -O
+kubectl replace -f tigera-operator.yaml
+```
+
+Had issues with some CRD's, so needed to trigger :
+
+`kubectl apply --server-side --force-conflicts -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/operator-crds.yaml`
+
+Then redo `kubectl replace -f tigera-operator.yaml`.
+
 ## Overview
 
 - [Introduction](https://github.com/k8s-at-home/flux-cluster-template#-introduction)

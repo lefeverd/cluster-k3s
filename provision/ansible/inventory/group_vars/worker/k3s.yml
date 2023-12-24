@@ -9,6 +9,6 @@ k3s_control_node: false
 k3s_agent:
   node-external-ip: "{{ hostvars[inventory_hostname].ansible_eth0.ipv4.address }}"
   node-ip: "{{ hostvars[inventory_hostname].ansible_ens10.ipv4.address }}"
-  kubelet-arg:
+  #kubelet-arg:
     # Allow k8s services to contain TCP and UDP on the same port
-    - "feature-gates=MixedProtocolLBService=true"
+    #- "feature-gates=MixedProtocolLBService=true"

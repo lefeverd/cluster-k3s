@@ -14,4 +14,3 @@ resources:
   - elasticsearch
   - gitlab
   - metallb-system
-  - ontrack

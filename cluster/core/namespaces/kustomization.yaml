@@ -15,4 +15,3 @@ resources:
   - elasticsearch.yaml
   - gitlab.yaml
   - github.yaml
-  - ontrack.yaml

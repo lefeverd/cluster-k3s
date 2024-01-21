@@ -9,7 +9,7 @@ variable "location" {
 
 variable "worker_count" {
   type = number
-  default = 4
+  default = 3
 }
 
 variable "server_type" {
